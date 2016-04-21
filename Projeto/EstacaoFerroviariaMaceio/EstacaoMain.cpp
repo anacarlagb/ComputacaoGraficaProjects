@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include <GL/glut.h>
+#include "sala_entrada_estacao.h"
 
 
 /**
@@ -57,11 +58,14 @@ GLfloat porta_especular[] = { 1.0, 1.0, 1.0, 1.0 };
 GLfloat porta_brilho[]    = { 50.0 };
 
 
-void compoe_piso(void);
-void compoe_teto(void);
-void compoe_parede_entrada(void);
-void compoe_parede_traseira(void);
-void compoe_parede_direita(void);
+//Sala do meio
+void compoe_estacao_sala_entrada(void);
+void compoe_piso_sala_entrada(void);
+
+
+// objetos da sala de entrada
+
+
 void compoe_cadeiras(void);
 void compoe_relogio(void);
 void compoe_planta(void);
@@ -69,7 +73,8 @@ void compoe_extintor(void);
 void compoe_ar_condicionado(void);
 
 
-void compoe_piso(void){
+
+void compoe_piso_sala_entrada(void){
 
  //piso -- http://stackoverflow.com/questions/327043/how-to-apply-texture-to-glutsolidcube olhem :D
   glEnable(GL_TEXTURE_GEN_S); 
@@ -86,17 +91,7 @@ void compoe_piso(void){
   glDisable(GL_TEXTURE_GEN_T);
 }
 
-void compoe_teto(void){
-	glPushMatrix();
-  //teto
-  //tras/frente - cima/baixo - direita/esquerda
-  glTranslatef (-14.85, 10.0, -6.0);
-  glColor3f(0.92,0.85,0);
-  //largura, altura, espessura
-  glScalef (10.05, 1, 10);
-  glutSolidCube (5.0);
-  glPopMatrix();
-}
+
 
 void compoe_porta(){
   glPushMatrix();
@@ -114,91 +109,26 @@ void compoe_porta(){
   glPopMatrix();
   glPopMatrix();  
 }
-void compoe_parede_entrada(void){
 
-  glPushMatrix();
- //parede entrada - parte topo
-  //tras/frente - cima/baixo - direita/esquerda
-  glColor3f(1.0, 1.0, 0);
-  glTranslatef (10, 10.0, -6);
-  //espessura, altura, largura
-  glScalef (0.1, 0.1, 10.0);
-  glutSolidCube (5.0);
-  glPopMatrix();
 
-  //parede entrada  - parte 1- baixo preenchida
-  glPushMatrix();
-  //tras/frente - cima/baixo - direita/esquerda
-  glTranslatef (10, -1.6, 10.1);
-  //espessura, altura, largura
-  glScalef (0.1, 4.55, -4.0);
-  glutSolidCube (5.0);
-  glPopMatrix();
+void compoe_relogio(void){
+    GLUquadricObj *quadric;
+    
+    relogio = glGenLists(1);
+    glNewList(relogio, GL_COMPILE);
+    glPushMatrix();  
+    
+    //+tras/frente- - +baixo/cima- - - +esquerda/direita-
+    glTranslatef (12.0, 10.0, -6);
+    glRotatef(270,1,0,1);
+    glScalef(4.0,0.1,10.0);
+    quadric = gluNewQuadric();
+    glColor3f(1.0,1.0,1.0);
 
- // parede entrada - parte 2 - baixo preenchida
-  glPushMatrix();
-  //tras/frente - cima/baixo - direita/esquerda
-  glTranslatef (10, -1.6, -20.9);
-  //espessura, altura, largura
-  glScalef (0.1, 4.55, 4.0);
-  glutSolidCube (5.0);
-  glPopMatrix();
+    
+    gluSphere(quadric,0.3,15,12);
+    glPopMatrix();
 
-}
-
-void compoe_parede_exterior(void){
-
-  glPushMatrix();
-  //tras/frente - cima/baixo - direita/esquerda
-  //-14.85, 10.0, -6.0
-  glTranslatef (-39.8, 10.0, -6);
-  //espessura, altura, largura
-  glScalef (0.1, 0.1, 10.0);
-  glutSolidCube (5.0);
-  glPopMatrix();
-
-  //  //parede exterior - parte 1 - baixo preenchida
-  glPushMatrix();
-  //tras/frente - cima/baixo - direita/esquerda
-  glTranslatef (-39.8, -1.6, -8.9);
-  //espessura, altura, largura
-  glScalef (0.1, 4.55, -8.9);
-  glutSolidCube (5.0);
-  glPopMatrix();
-
-  //parede exterior - parte 2 - baixo preenchida
-  glPushMatrix();
-  //tras/frente - cima/baixo - direita/esquerda
-  glTranslatef (-39.8, -1.6, 15.3);
-  //espessura, altura, largura
-  glScalef (0.1, 4.55, 1.5);
-  glutSolidCube (5.0);
-  glPopMatrix();
-
-}
-
-void compoe_parede_direita(void){
-	
-	glPushMatrix();
-  // parede direita- parte 1 - baixo preenchida
-  //tras/frente - cima/baixo - direita/esquerda
-  glTranslatef (-12, 0, 19.2);
-  //largura, altura, espessura
-  glScalef (9.0, 4, 0.1);
-
-  glutSolidCube (5.0);
-  glPopMatrix();
-
-  // parede direita- parte 2 - baixo preenchida
-  glPushMatrix();
-   glColor3f(1.0,1.0,0.0);
-  //tras/frente - cima/baixo - direita/esquerda
-  glTranslatef (-35, 0, 19.2);
-  //largura, altura, espessura
-  glScalef (2.1, 4, 0.1);
-
-  glutSolidCube (5.0);
-  glPopMatrix();
 }
 
 void compoe_cadeiras(void){
@@ -321,25 +251,6 @@ void compoe_cadeiras(void){
   }
 }
 
-void compoe_relogio(void){
-    GLUquadricObj *quadric;
-    
-    relogio = glGenLists(1);
-    glNewList(relogio, GL_COMPILE);
-    glPushMatrix();  
-    
-    //+tras/frente- - +baixo/cima- - - +esquerda/direita-
-    glTranslatef (12.0, 10.0, -6);
-    glRotatef(270,1,0,1);
-    glScalef(4.0,0.1,10.0);
-    quadric = gluNewQuadric();
-    glColor3f(1.0,1.0,1.0);
-
-    
-    gluSphere(quadric,0.3,15,12);
-    glPopMatrix();
-
-}
 
 void compoe_planta(void){
     GLUquadricObj *quadric;
@@ -426,19 +337,36 @@ void compoe_estacao(void){
   quadric = gluNewQuadric(); 
   glColor3f(0.85,0.85,0.85);
   
-  compoe_piso();
+  compoe_piso_sala_entrada();
 
-  compoe_parede_entrada();
-  compoe_parede_exterior();
-  compoe_parede_direita();
+  compoe_parede_entrada_sala_entrada();
+  compoe_parede_traseira_sala_entrada();
+  compoe_parede_direita_sala_entrada();
+  compoe_parede_esquerda_sala_entrada();
   compoe_teto();
   compoe_cadeiras();
+
   compoe_relogio();
   compoe_planta();
   compoe_extintor();
   compoe_ar_condicionado();
   glEndList();
 }
+
+void compoe_sala_entrada(void){
+   GLUquadricObj *quadric;
+  
+  /* inicia a composicao da estacao */
+  estacao = glGenLists(1);
+  glNewList(estacao, GL_COMPILE);
+
+  quadric = gluNewQuadric(); 
+  glColor3f(0.85,0.85,0.85);
+
+}
+
+
+
 void init(void){
   glShadeModel(GL_FLAT);
   glEnable(GL_DEPTH_TEST);
@@ -552,7 +480,6 @@ int main(int argc, char** argv){
   glutSpecialFunc(special);
   glutDisplayFunc(display);
   glutReshapeFunc(reshape);
-
   glutMainLoop();
 
   return(0);
