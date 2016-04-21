@@ -83,7 +83,7 @@ void compoe_piso_sala_entrada(void){
   //tras/frente - cima/baixo - direita/esquerda
   glTranslatef (-14.85, -10.0, -6.0);
   //largura, altura, espessura
-  glScalef (10.05, 0.1, 10);
+  glScalef (10.05, 0.1, 20);
   glBindTexture(GL_TEXTURE_2D, texture_id[0]);
   glutSolidCube (5.0);
   glPopMatrix();
@@ -343,13 +343,13 @@ void compoe_estacao(void){
   compoe_parede_traseira_sala_entrada();
   compoe_parede_direita_sala_entrada();
   compoe_parede_esquerda_sala_entrada();
-  compoe_teto();
-  compoe_cadeiras();
+  //compoe_teto();
+ // compoe_cadeiras();
 
-  compoe_relogio();
-  compoe_planta();
-  compoe_extintor();
-  compoe_ar_condicionado();
+  //compoe_relogio();
+  //compoe_planta();
+  //compoe_extintor();
+  //compoe_ar_condicionado();
   glEndList();
 }
 
@@ -430,8 +430,8 @@ void display(void){
   glCallList(planta);
   glCallList(extintor);
   glCallList(ar_condicionado);
-
-  compoe_porta();
+  glPopMatrix();
+  //compoe_porta();
   glutSwapBuffers();
 }
 
