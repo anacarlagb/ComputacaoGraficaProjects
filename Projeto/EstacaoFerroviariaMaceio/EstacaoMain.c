@@ -3,11 +3,14 @@
 #include <math.h>
 #include <GL/glut.h>
 #include "sala_entrada_estacao.h"
-
+#include "image.h"
+#define TEXTURA_DO_PLANO "montanhas.rgb"
+#define COR_DO_PLANO 0.52,0.52,0.78,1.0
+#define COORD_TEXTURA_PLANO 1.0
 
 /**
   Trabalho de Computacao Grafica - IC/UFAL
-  Mapeamento da Estacao Ferroviaria de Maceio - Fase 1
+  Mapeamento da Estacao Ferroviaria de Maceio - Fase 2
   Equipe: Laysa e Ana Carla
 
 */
@@ -29,18 +32,18 @@ glPopMatrix();
 GLfloat obs[3]={0.0,7.0,5.0};
 GLfloat look[3]={0.0,3.0,0.0};
 //Define profundidade da estacao
-GLfloat finalX = 10.0;
-//Define altura da estacao
-GLfloat finalY = 10.0;
-//Define largura da estacao
-GLfloat finalZ = 10.0;
+// GLfloat finalX = 10.0;
+// //Define altura da estacao
+// GLfloat finalY = 10.0;
+// //Define largura da estacao
+// GLfloat finalZ = 10.0;
 GLfloat sentido = 15;
 
 static int eixoy;
 
-GLfloat origemX = -finalX;
-GLfloat origemY = -finalY;
-GLfloat origemZ = -finalZ;
+// GLfloat origemX = -finalX;
+// GLfloat origemY = -finalY;
+// GLfloat origemZ = -finalZ;
 
 GLshort texturas=1;
 GLfloat tetaxz=5;
@@ -50,13 +53,19 @@ GLint WIDTH =800;
 GLint HEIGHT=600;
 
 GLuint estacao, cadeiras, relogio, planta, extintor, ar_condicionado;
+GLuint  textura_plano;
 
 GLuint texture_id[MAXTEXTURE];
 
 GLfloat porta_difusa[]    = { 1.0, 1.0, 0.0, 1.0 };
 GLfloat porta_especular[] = { 1.0, 1.0, 1.0, 1.0 };
 GLfloat porta_brilho[]    = { 50.0 };
-
+GLfloat ctp[4][2]={
+  {-COORD_TEXTURA_PLANO,-COORD_TEXTURA_PLANO},
+  {+COORD_TEXTURA_PLANO,-COORD_TEXTURA_PLANO},
+  {+COORD_TEXTURA_PLANO,+COORD_TEXTURA_PLANO},
+  {-COORD_TEXTURA_PLANO,+COORD_TEXTURA_PLANO}
+};
 
 //Sala do meio
 void compoe_estacao_sala_entrada(void);
@@ -131,125 +140,125 @@ void compoe_relogio(void){
 
 }
 
-void compoe_cadeiras(void){
-  GLUquadricObj *quadric;
+// void compoe_cadeiras(void){
+//   GLUquadricObj *quadric;
   
-  cadeiras = glGenLists(1);
-  glNewList(cadeiras, GL_COMPILE);
-  quadric = gluNewQuadric();
-  glColor3f(0,0,0);
-  GLfloat lado, atras = 0;
-  //compoe cadeiras, 4 colunas
-  for(int i = 2; i<4; i++){
-    atras = i * 9.5;
-    //6 cadeiras lado a lado - 3 da cada lado
-    for(int j=0; j<3; j++){
-      lado = j*6.0;
-      if (j>2){
-        lado = lado + 8;
-      }
+//   cadeiras = glGenLists(1);
+//   glNewList(cadeiras, GL_COMPILE);
+//   quadric = gluNewQuadric();
+//   glColor3f(0,0,0);
+//   GLfloat lado, atras = 0;
+//   //compoe cadeiras, 4 colunas
+//   for(int i = 2; i<4; i++){
+//     atras = i * 9.5;
+//     //6 cadeiras lado a lado - 3 da cada lado
+//     for(int j=0; j<3; j++){
+//       lado = j*6.0;
+//       if (j>2){
+//         lado = lado + 8;
+//       }
 
-      //pe cadeira - atrás esquerda
+//       //pe cadeira - atrás esquerda
 
-      quadric = gluNewQuadric();
+//       quadric = gluNewQuadric();
   
-      gluQuadricDrawStyle(quadric, GLU_FILL);
-      gluQuadricOrientation(quadric, GLU_INSIDE);
-      glPushMatrix();
-      glRotatef(90,1,0,0);
-      //-tras/frente+ - +esquerda/direita- - +baixo/cima-
-      glTranslatef (8-lado, -0.8-atras, 6.8);
-      SOLID_CLOSED_CYLINDER(quadric, 0.1, 0.1, 3.3, 30, 5)
-      gluDeleteQuadric(quadric);
-      glPopMatrix();
+//       gluQuadricDrawStyle(quadric, GLU_FILL);
+//       gluQuadricOrientation(quadric, GLU_INSIDE);
+//       glPushMatrix();
+//       glRotatef(90,1,0,0);
+//       //-tras/frente+ - +esquerda/direita- - +baixo/cima-
+//       glTranslatef (8-lado, -0.8-atras, 6.8);
+//       SOLID_CLOSED_CYLINDER(quadric, 0.1, 0.1, 3.3, 30, 5)
+//       gluDeleteQuadric(quadric);
+//       glPopMatrix();
 
 
-      //pe cadeira - atrás direita
-      quadric = gluNewQuadric();
-      gluQuadricDrawStyle(quadric, GLU_FILL);
-      gluQuadricOrientation(quadric, GLU_INSIDE);
-      glPushMatrix();
-      glRotatef(90,1,0,0);
-      //-tras/frente+ - +esquerda/direita- - +baixo/cima-
-      glTranslatef (6-lado, -0.8-atras, 6.8);
-      SOLID_CLOSED_CYLINDER(quadric, 0.1, 0.1, 3.3, 30, 5)
-      gluDeleteQuadric(quadric);
-      glPopMatrix();
+//       //pe cadeira - atrás direita
+//       quadric = gluNewQuadric();
+//       gluQuadricDrawStyle(quadric, GLU_FILL);
+//       gluQuadricOrientation(quadric, GLU_INSIDE);
+//       glPushMatrix();
+//       glRotatef(90,1,0,0);
+//       //-tras/frente+ - +esquerda/direita- - +baixo/cima-
+//       glTranslatef (6-lado, -0.8-atras, 6.8);
+//       SOLID_CLOSED_CYLINDER(quadric, 0.1, 0.1, 3.3, 30, 5)
+//       gluDeleteQuadric(quadric);
+//       glPopMatrix();
 
 
-      //pe cadeira - frente esquerda
-      quadric = gluNewQuadric();
-      gluQuadricDrawStyle(quadric, GLU_FILL);
-      gluQuadricOrientation(quadric, GLU_INSIDE);
-      glPushMatrix();
-      glRotatef(90,1,0,0);
-      //-tras/frente+ - +esquerda/direita- - +baixo/cima-
-      glTranslatef (8-lado, 1.2-atras, 6.8);
-      SOLID_CLOSED_CYLINDER(quadric, 0.1, 0.1, 3.3, 30, 5)
-      gluDeleteQuadric(quadric);
-      glPopMatrix();
+//       //pe cadeira - frente esquerda
+//       quadric = gluNewQuadric();
+//       gluQuadricDrawStyle(quadric, GLU_FILL);
+//       gluQuadricOrientation(quadric, GLU_INSIDE);
+//       glPushMatrix();
+//       glRotatef(90,1,0,0);
+//       //-tras/frente+ - +esquerda/direita- - +baixo/cima-
+//       glTranslatef (8-lado, 1.2-atras, 6.8);
+//       SOLID_CLOSED_CYLINDER(quadric, 0.1, 0.1, 3.3, 30, 5)
+//       gluDeleteQuadric(quadric);
+//       glPopMatrix();
 
 
-      //pe cadeira - frente direita
-      quadric = gluNewQuadric();
-      gluQuadricDrawStyle(quadric, GLU_FILL);
-      gluQuadricOrientation(quadric, GLU_INSIDE);
-      glPushMatrix();
-      glRotatef(90,1,0,0);
-      //-tras/frente+ - +esquerda/direita- - +baixo/cima-
-      glTranslatef (6-lado, 1.2-atras, 6.8);
-      SOLID_CLOSED_CYLINDER(quadric, 0.1, 0.1, 3.3, 30, 5)
-      gluDeleteQuadric(quadric);
-      glPopMatrix();
+//       //pe cadeira - frente direita
+//       quadric = gluNewQuadric();
+//       gluQuadricDrawStyle(quadric, GLU_FILL);
+//       gluQuadricOrientation(quadric, GLU_INSIDE);
+//       glPushMatrix();
+//       glRotatef(90,1,0,0);
+//       //-tras/frente+ - +esquerda/direita- - +baixo/cima-
+//       glTranslatef (6-lado, 1.2-atras, 6.8);
+//       SOLID_CLOSED_CYLINDER(quadric, 0.1, 0.1, 3.3, 30, 5)
+//       gluDeleteQuadric(quadric);
+//       glPopMatrix();
 
-      //assento cadeira
-      glPushMatrix();  
-      //+tras/frente- - +baixo/cima- - - +esquerda/direita-
-      glTranslatef (7-lado, -6.8, 0.3-atras);
-      glScalef(4.0,0.3,3.0);
-      quadric=gluNewQuadric();
-      //glColor3f(0.3,0.5,1);
-      gluSphere(quadric,0.5,15,12);
-      glPopMatrix();
+//       //assento cadeira
+//       glPushMatrix();  
+//       //+tras/frente- - +baixo/cima- - - +esquerda/direita-
+//       glTranslatef (7-lado, -6.8, 0.3-atras);
+//       glScalef(4.0,0.3,3.0);
+//       quadric=gluNewQuadric();
+//       //glColor3f(0.3,0.5,1);
+//       gluSphere(quadric,0.5,15,12);
+//       glPopMatrix();
 
-      //apoio encosto cadeira - vertical
-      quadric = gluNewQuadric();
-      gluQuadricDrawStyle(quadric, GLU_FILL);
-      gluQuadricOrientation(quadric, GLU_INSIDE);
-      glPushMatrix();   
-      //glColor3f(0,0,0);
-      glRotatef(90,1,0,0);  
-      glTranslatef (7-lado, -1.8-atras, 5);
-      //tras/frente - direita/esquerda - cima/baixo 
-      SOLID_CLOSED_CYLINDER(quadric, 0.15, 0.15, 2.2, 30, 1)
-      //gluDeleteQuadric(quadric);
-      glPopMatrix();
+//       //apoio encosto cadeira - vertical
+//       quadric = gluNewQuadric();
+//       gluQuadricDrawStyle(quadric, GLU_FILL);
+//       gluQuadricOrientation(quadric, GLU_INSIDE);
+//       glPushMatrix();   
+//       //glColor3f(0,0,0);
+//       glRotatef(90,1,0,0);  
+//       glTranslatef (7-lado, -1.8-atras, 5);
+//       //tras/frente - direita/esquerda - cima/baixo 
+//       SOLID_CLOSED_CYLINDER(quadric, 0.15, 0.15, 2.2, 30, 1)
+//       //gluDeleteQuadric(quadric);
+//       glPopMatrix();
 
-      //encosto cadeira
-      glPushMatrix();  
-      //+tras/frente- - +baixo/cima- - - +esquerda/direita-
-      glTranslatef (7-lado, -4.75, -1.5-atras);
-      glRotatef(-15,1,0,1);
-      glScalef(4,3,0.5);
-      quadric=gluNewQuadric();
-      //glColor3f(0.3,0.5,1);
-      gluSphere(quadric,0.5,15,12);
-      glPopMatrix();
+//       //encosto cadeira
+//       glPushMatrix();  
+//       //+tras/frente- - +baixo/cima- - - +esquerda/direita-
+//       glTranslatef (7-lado, -4.75, -1.5-atras);
+//       glRotatef(-15,1,0,1);
+//       glScalef(4,3,0.5);
+//       quadric=gluNewQuadric();
+//       //glColor3f(0.3,0.5,1);
+//       gluSphere(quadric,0.5,15,12);
+//       glPopMatrix();
 
-      //apoio encosto cadeira - horizontal
-      quadric = gluNewQuadric();
-      gluQuadricDrawStyle(quadric, GLU_FILL);
-      gluQuadricOrientation(quadric, GLU_INSIDE);
-      glPushMatrix();   
-      //glColor3f(0,0,0);
-      glTranslatef (7-lado, -7, -2-atras);
-      //tras/frente - cima/baixo - direita/esquerda 
-      SOLID_CLOSED_CYLINDER(quadric, 0.15, 0.15, 2.2, 30, 1)
-      gluDeleteQuadric(quadric);
-      glPopMatrix();
-    }
-  }
-}
+//       //apoio encosto cadeira - horizontal
+//       quadric = gluNewQuadric();
+//       gluQuadricDrawStyle(quadric, GLU_FILL);
+//       gluQuadricOrientation(quadric, GLU_INSIDE);
+//       glPushMatrix();   
+//       //glColor3f(0,0,0);
+//       glTranslatef (7-lado, -7, -2-atras);
+//       //tras/frente - cima/baixo - direita/esquerda 
+//       SOLID_CLOSED_CYLINDER(quadric, 0.15, 0.15, 2.2, 30, 1)
+//       gluDeleteQuadric(quadric);
+//       glPopMatrix();
+//     }
+//   }
+// }
 
 
 void compoe_planta(void){
@@ -364,10 +373,40 @@ void compoe_sala_entrada(void){
   glColor3f(0.85,0.85,0.85);
 
 }
+void carregar_texturas(void){
+  IMAGE *img;
+  GLenum gluerr;
+
+  /* textura do plano */
+  glGenTextures(1, &textura_plano);
+  glBindTexture(GL_TEXTURE_2D, textura_plano);
+  
+  if(!(img=ImageLoad(TEXTURA_DO_PLANO))) {
+    fprintf(stderr,"Error reading a texture.\n");
+    exit(-1);
+  }
+
+  gluerr=gluBuild2DMipmaps(GL_TEXTURE_2D, 3, 
+         img->sizeX, img->sizeY, 
+         GL_RGB, GL_UNSIGNED_BYTE, 
+         (GLvoid *)(img->data));
+  if(gluerr){
+    fprintf(stderr,"GLULib%s\n",gluErrorString(gluerr));
+    exit(-1);
+  }
+
+  glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,GL_REPEAT);
+  glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T,GL_REPEAT);
+  glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR_MIPMAP_LINEAR);
+  glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
+  glTexEnvf(GL_TEXTURE_ENV,GL_TEXTURE_ENV_MODE,GL_DECAL);
+
+}
 
 
 
 void init(void){
+  carregar_texturas();
   glShadeModel(GL_FLAT);
   glEnable(GL_DEPTH_TEST);
   glEnable(GL_BLEND);
@@ -423,7 +462,25 @@ void display(void){
   obs[2]=raioxz*sin(2*PI*tetaxz/360);
   gluLookAt(obs[0],obs[1],obs[2],look[0],look[1],look[2],0.0,1.0,0.0); //posicao do objeto no plano
 
-  
+ if(texturas){
+    glEnable(GL_TEXTURE_2D);  
+  }
+  else{
+    glDisable(GL_TEXTURE_2D);
+  }
+
+  glColor4f(COR_DO_PLANO);
+  glTexEnvf(GL_TEXTURE_ENV,GL_TEXTURE_ENV_MODE,GL_DECAL);
+  glBindTexture(GL_TEXTURE_2D,textura_plano);
+   
+  glBegin(GL_QUADS);
+  glTexCoord2fv(ctp[0]);  glVertex3f(-10,0,10);
+  glTexCoord2fv(ctp[1]);  glVertex3f(10,0,10);
+  glTexCoord2fv(ctp[2]);  glVertex3f(10,0,-10);
+  glTexCoord2fv(ctp[3]);  glVertex3f(-10,0,-10);
+  glEnd();
+  glTranslatef(0.0,2.0,-3.0);
+
   glCallList(estacao);
   glCallList(cadeiras);
   glCallList(relogio);
