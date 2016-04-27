@@ -23,17 +23,20 @@ PROGS = lines
 ##### RULES #####
 
 .SUFFIXES:
-.SUFFIXES: .c
+.SUFFIXES: .cpp
 
-.c: $(LIB_DEP)
+.cpp: $(LIB_DEP)
 	$(CC) -I$(INCDIR) $(CFLAGS) $< $(GL_LIBS) -o $@
 
-EstacaoMain2: EstacaoMain2.o 
-	$(CC) -I$(INCDIR) $(CFLAGS) EstacaoMain2.o $(GL_LIBS) -o EstacaoMain2
+EstacaoMain: EstacaoMain.o image.o
+	$(CC) -I$(INCDIR) $(CFLAGS) image.o EstacaoMain.o $(GL_LIBS) -o EstacaoMain
 
-EstacaoMain2.o: EstacaoMain2.c
-	$(CC) -I$(INCDIR) -c $(CFLAGS) EstacaoMain2.c	
+EstacaoMain.o: EstacaoMain.c
+	$(CC) -I$(INCDIR) -c $(CFLAGS) EstacaoMain.c
 
+image.o: image.c
+	$(CC) -I$(INCDIR) -c $(CFLAGS) image.c
+##### TARGETS ######
 
 default:
 	@echo "Specify a target configuration"

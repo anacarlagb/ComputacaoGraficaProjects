@@ -1,0 +1,133 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: Texture JPG - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\MARCIO~1\LOCALS~1\Temp\RSP211.tmp" with contents
+[
+/nologo /MLd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_CONSOLE" /D "_MBCS" /FR"Debug/" /Fp"Debug/Texture JPG.pch" /YX /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"C:\My Documents\CG\OpenGL\Testes\Textures\JPG\JpegLib\Jpegfile.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\MARCIO~1\LOCALS~1\Temp\RSP211.tmp" 
+Creating temporary file "C:\DOCUME~1\MARCIO~1\LOCALS~1\Temp\RSP212.tmp" with contents
+[
+opengl32.lib glut32.lib glu32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /incremental:yes /pdb:"Debug/Texture JPG.pdb" /debug /machine:I386 /out:"Debug/Texture JPG.exe" /pdbtype:sept 
+".\Debug\JCAPIMIN.OBJ"
+".\Debug\JCAPISTD.OBJ"
+".\Debug\JCCOEFCT.OBJ"
+".\Debug\JCCOLOR.OBJ"
+".\Debug\JCDCTMGR.OBJ"
+".\Debug\JCHUFF.OBJ"
+".\Debug\JCINIT.OBJ"
+".\Debug\JCMAINCT.OBJ"
+".\Debug\JCMARKER.OBJ"
+".\Debug\JCMASTER.OBJ"
+".\Debug\JCOMAPI.OBJ"
+".\Debug\JCPARAM.OBJ"
+".\Debug\JCPHUFF.OBJ"
+".\Debug\JCPREPCT.OBJ"
+".\Debug\JCSAMPLE.OBJ"
+".\Debug\JCTRANS.OBJ"
+".\Debug\JDAPIMIN.OBJ"
+".\Debug\JDAPISTD.OBJ"
+".\Debug\JDATADST.OBJ"
+".\Debug\JDATASRC.OBJ"
+".\Debug\JDCOEFCT.OBJ"
+".\Debug\JDCOLOR.OBJ"
+".\Debug\JDDCTMGR.OBJ"
+".\Debug\JDHUFF.OBJ"
+".\Debug\JDINPUT.OBJ"
+".\Debug\JDMAINCT.OBJ"
+".\Debug\JDMARKER.OBJ"
+".\Debug\JDMASTER.OBJ"
+".\Debug\JDMERGE.OBJ"
+".\Debug\JDPHUFF.OBJ"
+".\Debug\JDPOSTCT.OBJ"
+".\Debug\JDSAMPLE.OBJ"
+".\Debug\JDTRANS.OBJ"
+".\Debug\JFDCTFLT.OBJ"
+".\Debug\JFDCTFST.OBJ"
+".\Debug\JFDCTINT.OBJ"
+".\Debug\JIDCTFLT.OBJ"
+".\Debug\JIDCTFST.OBJ"
+".\Debug\JIDCTINT.OBJ"
+".\Debug\JIDCTRED.OBJ"
+".\Debug\JMEMMGR.OBJ"
+".\Debug\JMEMNOBS.OBJ"
+".\Debug\Jpegfile.obj"
+".\Debug\JQUANT1.OBJ"
+".\Debug\JQUANT2.OBJ"
+".\Debug\JUTILS.OBJ"
+".\Debug\FirstTextureJPG.obj"
+".\Debug\JERROR.OBJ"
+]
+Creating command line "link.exe @C:\DOCUME~1\MARCIO~1\LOCALS~1\Temp\RSP212.tmp"
+<h3>Output Window</h3>
+Compiling...
+Jpegfile.cpp
+Linking...
+Creating temporary file "C:\DOCUME~1\MARCIO~1\LOCALS~1\Temp\RSP213.tmp" with contents
+[
+/nologo /o"Debug/Texture JPG.bsc" 
+".\Debug\JCAPIMIN.SBR"
+".\Debug\JCAPISTD.SBR"
+".\Debug\JCCOEFCT.SBR"
+".\Debug\JCCOLOR.SBR"
+".\Debug\JCDCTMGR.SBR"
+".\Debug\JCHUFF.SBR"
+".\Debug\JCINIT.SBR"
+".\Debug\JCMAINCT.SBR"
+".\Debug\JCMARKER.SBR"
+".\Debug\JCMASTER.SBR"
+".\Debug\JCOMAPI.SBR"
+".\Debug\JCPARAM.SBR"
+".\Debug\JCPHUFF.SBR"
+".\Debug\JCPREPCT.SBR"
+".\Debug\JCSAMPLE.SBR"
+".\Debug\JCTRANS.SBR"
+".\Debug\JDAPIMIN.SBR"
+".\Debug\JDAPISTD.SBR"
+".\Debug\JDATADST.SBR"
+".\Debug\JDATASRC.SBR"
+".\Debug\JDCOEFCT.SBR"
+".\Debug\JDCOLOR.SBR"
+".\Debug\JDDCTMGR.SBR"
+".\Debug\JDHUFF.SBR"
+".\Debug\JDINPUT.SBR"
+".\Debug\JDMAINCT.SBR"
+".\Debug\JDMARKER.SBR"
+".\Debug\JDMASTER.SBR"
+".\Debug\JDMERGE.SBR"
+".\Debug\JDPHUFF.SBR"
+".\Debug\JDPOSTCT.SBR"
+".\Debug\JDSAMPLE.SBR"
+".\Debug\JDTRANS.SBR"
+".\Debug\JFDCTFLT.SBR"
+".\Debug\JFDCTFST.SBR"
+".\Debug\JFDCTINT.SBR"
+".\Debug\JIDCTFLT.SBR"
+".\Debug\JIDCTFST.SBR"
+".\Debug\JIDCTINT.SBR"
+".\Debug\JIDCTRED.SBR"
+".\Debug\JMEMMGR.SBR"
+".\Debug\JMEMNOBS.SBR"
+".\Debug\Jpegfile.sbr"
+".\Debug\JQUANT1.SBR"
+".\Debug\JQUANT2.SBR"
+".\Debug\JUTILS.SBR"
+".\Debug\FirstTextureJPG.sbr"
+".\Debug\JERROR.SBR"]
+Creating command line "bscmake.exe @C:\DOCUME~1\MARCIO~1\LOCALS~1\Temp\RSP213.tmp"
+Creating browse info file...
+<h3>Output Window</h3>
+
+
+
+<h3>Results</h3>
+Texture JPG.exe - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

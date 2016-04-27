@@ -1,0 +1,165 @@
+# Project: Texture JPG
+# Makefile created by Dev-C++ 4.9.4.1
+
+CC   = g++.exe
+WINDRES = windres.exe
+RES  = 
+OBJ  = JpegLib/Jpegfile.o JpegLib/JCAPIMIN.o JpegLib/JCAPISTD.o JpegLib/JCCOEFCT.o JpegLib/JCCOLOR.o JpegLib/JCDCTMGR.o JpegLib/JCHUFF.o JpegLib/JCINIT.o JpegLib/JCMAINCT.o JpegLib/JCMARKER.o JpegLib/JCMASTER.o JpegLib/JCOMAPI.o JpegLib/JCPARAM.o JpegLib/JCPHUFF.o JpegLib/JCPREPCT.o JpegLib/JCSAMPLE.o JpegLib/JCTRANS.o JpegLib/JDAPIMIN.o JpegLib/JDAPISTD.o JpegLib/JDATADST.o JpegLib/JDATASRC.o JpegLib/JDCOEFCT.o JpegLib/JDCOLOR.o JpegLib/JDDCTMGR.o JpegLib/JDHUFF.o JpegLib/JDINPUT.o JpegLib/JDMAINCT.o JpegLib/JDMARKER.o JpegLib/JDMASTER.o JpegLib/JDMERGE.o JpegLib/JDPHUFF.o JpegLib/JDPOSTCT.o JpegLib/JDSAMPLE.o JpegLib/JDTRANS.o JpegLib/JFDCTFLT.o JpegLib/JFDCTFST.o JpegLib/JFDCTINT.o JpegLib/JIDCTFLT.o JpegLib/JIDCTFST.o JpegLib/JIDCTINT.o JpegLib/JIDCTRED.o JpegLib/JMEMMGR.o JpegLib/JMEMNOBS.o JpegLib/JQUANT1.o JpegLib/JQUANT2.o JpegLib/JUTILS.o JpegLib/JERROR.o FirstTextureJPG-DEVCPP.o $(RES)
+LIBS =  -L"C:\Dev-C++\lib" -lopengl32 -lglu32 -lglut32
+INCS =  -I"C:\Dev-C++\include"  -I"C:\Dev-C++\include\g++-3"  -I"C:\Dev-C++\include" 
+BIN  = Texture\ JPG.exe
+CFLAGS = $(INCS)  -s
+
+.PHONY: clean
+
+all: Texture\ JPG.exe
+
+clean:
+	rm -f $(OBJ) $(BIN)
+
+$(BIN): $(OBJ)
+	$(CC) $(OBJ) -o "Texture JPG.exe" $(LIBS) $(CFLAGS)
+
+JpegLib/Jpegfile.o: JpegLib/Jpegfile.cpp
+	$(CC) -c JpegLib/Jpegfile.cpp -o JpegLib/Jpegfile.o $(CFLAGS)
+
+JpegLib/JCAPIMIN.o: JpegLib/JCAPIMIN.C
+	$(CC) -c JpegLib/JCAPIMIN.C -o JpegLib/JCAPIMIN.o $(CFLAGS)
+
+JpegLib/JCAPISTD.o: JpegLib/JCAPISTD.C
+	$(CC) -c JpegLib/JCAPISTD.C -o JpegLib/JCAPISTD.o $(CFLAGS)
+
+JpegLib/JCCOEFCT.o: JpegLib/JCCOEFCT.C
+	$(CC) -c JpegLib/JCCOEFCT.C -o JpegLib/JCCOEFCT.o $(CFLAGS)
+
+JpegLib/JCCOLOR.o: JpegLib/JCCOLOR.C
+	$(CC) -c JpegLib/JCCOLOR.C -o JpegLib/JCCOLOR.o $(CFLAGS)
+
+JpegLib/JCDCTMGR.o: JpegLib/JCDCTMGR.C
+	$(CC) -c JpegLib/JCDCTMGR.C -o JpegLib/JCDCTMGR.o $(CFLAGS)
+
+JpegLib/JCHUFF.o: JpegLib/JCHUFF.C
+	$(CC) -c JpegLib/JCHUFF.C -o JpegLib/JCHUFF.o $(CFLAGS)
+
+JpegLib/JCINIT.o: JpegLib/JCINIT.C
+	$(CC) -c JpegLib/JCINIT.C -o JpegLib/JCINIT.o $(CFLAGS)
+
+JpegLib/JCMAINCT.o: JpegLib/JCMAINCT.C
+	$(CC) -c JpegLib/JCMAINCT.C -o JpegLib/JCMAINCT.o $(CFLAGS)
+
+JpegLib/JCMARKER.o: JpegLib/JCMARKER.C
+	$(CC) -c JpegLib/JCMARKER.C -o JpegLib/JCMARKER.o $(CFLAGS)
+
+JpegLib/JCMASTER.o: JpegLib/JCMASTER.C
+	$(CC) -c JpegLib/JCMASTER.C -o JpegLib/JCMASTER.o $(CFLAGS)
+
+JpegLib/JCOMAPI.o: JpegLib/JCOMAPI.C
+	$(CC) -c JpegLib/JCOMAPI.C -o JpegLib/JCOMAPI.o $(CFLAGS)
+
+JpegLib/JCPARAM.o: JpegLib/JCPARAM.C
+	$(CC) -c JpegLib/JCPARAM.C -o JpegLib/JCPARAM.o $(CFLAGS)
+
+JpegLib/JCPHUFF.o: JpegLib/JCPHUFF.C
+	$(CC) -c JpegLib/JCPHUFF.C -o JpegLib/JCPHUFF.o $(CFLAGS)
+
+JpegLib/JCPREPCT.o: JpegLib/JCPREPCT.C
+	$(CC) -c JpegLib/JCPREPCT.C -o JpegLib/JCPREPCT.o $(CFLAGS)
+
+JpegLib/JCSAMPLE.o: JpegLib/JCSAMPLE.C
+	$(CC) -c JpegLib/JCSAMPLE.C -o JpegLib/JCSAMPLE.o $(CFLAGS)
+
+JpegLib/JCTRANS.o: JpegLib/JCTRANS.C
+	$(CC) -c JpegLib/JCTRANS.C -o JpegLib/JCTRANS.o $(CFLAGS)
+
+JpegLib/JDAPIMIN.o: JpegLib/JDAPIMIN.C
+	$(CC) -c JpegLib/JDAPIMIN.C -o JpegLib/JDAPIMIN.o $(CFLAGS)
+
+JpegLib/JDAPISTD.o: JpegLib/JDAPISTD.C
+	$(CC) -c JpegLib/JDAPISTD.C -o JpegLib/JDAPISTD.o $(CFLAGS)
+
+JpegLib/JDATADST.o: JpegLib/JDATADST.C
+	$(CC) -c JpegLib/JDATADST.C -o JpegLib/JDATADST.o $(CFLAGS)
+
+JpegLib/JDATASRC.o: JpegLib/JDATASRC.C
+	$(CC) -c JpegLib/JDATASRC.C -o JpegLib/JDATASRC.o $(CFLAGS)
+
+JpegLib/JDCOEFCT.o: JpegLib/JDCOEFCT.C
+	$(CC) -c JpegLib/JDCOEFCT.C -o JpegLib/JDCOEFCT.o $(CFLAGS)
+
+JpegLib/JDCOLOR.o: JpegLib/JDCOLOR.C
+	$(CC) -c JpegLib/JDCOLOR.C -o JpegLib/JDCOLOR.o $(CFLAGS)
+
+JpegLib/JDDCTMGR.o: JpegLib/JDDCTMGR.C
+	$(CC) -c JpegLib/JDDCTMGR.C -o JpegLib/JDDCTMGR.o $(CFLAGS)
+
+JpegLib/JDHUFF.o: JpegLib/JDHUFF.C
+	$(CC) -c JpegLib/JDHUFF.C -o JpegLib/JDHUFF.o $(CFLAGS)
+
+JpegLib/JDINPUT.o: JpegLib/JDINPUT.C
+	$(CC) -c JpegLib/JDINPUT.C -o JpegLib/JDINPUT.o $(CFLAGS)
+
+JpegLib/JDMAINCT.o: JpegLib/JDMAINCT.C
+	$(CC) -c JpegLib/JDMAINCT.C -o JpegLib/JDMAINCT.o $(CFLAGS)
+
+JpegLib/JDMARKER.o: JpegLib/JDMARKER.C
+	$(CC) -c JpegLib/JDMARKER.C -o JpegLib/JDMARKER.o $(CFLAGS)
+
+JpegLib/JDMASTER.o: JpegLib/JDMASTER.C
+	$(CC) -c JpegLib/JDMASTER.C -o JpegLib/JDMASTER.o $(CFLAGS)
+
+JpegLib/JDMERGE.o: JpegLib/JDMERGE.C
+	$(CC) -c JpegLib/JDMERGE.C -o JpegLib/JDMERGE.o $(CFLAGS)
+
+JpegLib/JDPHUFF.o: JpegLib/JDPHUFF.C
+	$(CC) -c JpegLib/JDPHUFF.C -o JpegLib/JDPHUFF.o $(CFLAGS)
+
+JpegLib/JDPOSTCT.o: JpegLib/JDPOSTCT.C
+	$(CC) -c JpegLib/JDPOSTCT.C -o JpegLib/JDPOSTCT.o $(CFLAGS)
+
+JpegLib/JDSAMPLE.o: JpegLib/JDSAMPLE.C
+	$(CC) -c JpegLib/JDSAMPLE.C -o JpegLib/JDSAMPLE.o $(CFLAGS)
+
+JpegLib/JDTRANS.o: JpegLib/JDTRANS.C
+	$(CC) -c JpegLib/JDTRANS.C -o JpegLib/JDTRANS.o $(CFLAGS)
+
+JpegLib/JFDCTFLT.o: JpegLib/JFDCTFLT.C
+	$(CC) -c JpegLib/JFDCTFLT.C -o JpegLib/JFDCTFLT.o $(CFLAGS)
+
+JpegLib/JFDCTFST.o: JpegLib/JFDCTFST.C
+	$(CC) -c JpegLib/JFDCTFST.C -o JpegLib/JFDCTFST.o $(CFLAGS)
+
+JpegLib/JFDCTINT.o: JpegLib/JFDCTINT.C
+	$(CC) -c JpegLib/JFDCTINT.C -o JpegLib/JFDCTINT.o $(CFLAGS)
+
+JpegLib/JIDCTFLT.o: JpegLib/JIDCTFLT.C
+	$(CC) -c JpegLib/JIDCTFLT.C -o JpegLib/JIDCTFLT.o $(CFLAGS)
+
+JpegLib/JIDCTFST.o: JpegLib/JIDCTFST.C
+	$(CC) -c JpegLib/JIDCTFST.C -o JpegLib/JIDCTFST.o $(CFLAGS)
+
+JpegLib/JIDCTINT.o: JpegLib/JIDCTINT.C
+	$(CC) -c JpegLib/JIDCTINT.C -o JpegLib/JIDCTINT.o $(CFLAGS)
+
+JpegLib/JIDCTRED.o: JpegLib/JIDCTRED.C
+	$(CC) -c JpegLib/JIDCTRED.C -o JpegLib/JIDCTRED.o $(CFLAGS)
+
+JpegLib/JMEMMGR.o: JpegLib/JMEMMGR.C
+	$(CC) -c JpegLib/JMEMMGR.C -o JpegLib/JMEMMGR.o $(CFLAGS)
+
+JpegLib/JMEMNOBS.o: JpegLib/JMEMNOBS.C
+	$(CC) -c JpegLib/JMEMNOBS.C -o JpegLib/JMEMNOBS.o $(CFLAGS)
+
+JpegLib/JQUANT1.o: JpegLib/JQUANT1.C
+	$(CC) -c JpegLib/JQUANT1.C -o JpegLib/JQUANT1.o $(CFLAGS)
+
+JpegLib/JQUANT2.o: JpegLib/JQUANT2.C
+	$(CC) -c JpegLib/JQUANT2.C -o JpegLib/JQUANT2.o $(CFLAGS)
+
+JpegLib/JUTILS.o: JpegLib/JUTILS.C
+	$(CC) -c JpegLib/JUTILS.C -o JpegLib/JUTILS.o $(CFLAGS)
+
+JpegLib/JERROR.o: JpegLib/JERROR.C
+	$(CC) -c JpegLib/JERROR.C -o JpegLib/JERROR.o $(CFLAGS)
+
+FirstTextureJPG-DEVCPP.o: FirstTextureJPG-DEVCPP.cpp
+	$(CC) -c FirstTextureJPG-DEVCPP.cpp -o FirstTextureJPG-DEVCPP.o $(CFLAGS)

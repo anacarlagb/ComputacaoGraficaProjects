@@ -10,7 +10,6 @@ typedef struct{
   unsigned char *data;
 } IMAGE;
 
-
-
+IMAGE *ImageLoad(char *);
 
 #endif /* !__IMAGE_H__! */
