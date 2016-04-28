@@ -6,11 +6,10 @@
 #include <unistd.h>     // needed to sleep.
 #include "sala_entrada_estacao.h"
 #include "image.h"
+#include "objetos.h"
 
 
 
-#define COR_DO_PLANO 0.3,0.52,0.18,1.0
-#define COORD_TEXTURA_PLANO 1.0
 
 /**
   Trabalho de Computacao Grafica - IC/UFAL
@@ -50,12 +49,6 @@ GLuint estacao, cadeiras, relogio, planta, extintor, ar_condicionado;
 GLuint  textura_plano;
 
 GLuint texture_id[MAXTEXTURE];
-GLfloat ctp[4][2]={
-  {-COORD_TEXTURA_PLANO,-COORD_TEXTURA_PLANO},//direita - cima
-  {+COORD_TEXTURA_PLANO,-COORD_TEXTURA_PLANO},//esquerda - cima
-  {+COORD_TEXTURA_PLANO,+COORD_TEXTURA_PLANO},//direita -  baixo
-  {-COORD_TEXTURA_PLANO,+COORD_TEXTURA_PLANO} //direita - baixo
-};
 
 void compoe_piso_sala_entrada(void){
  //piso -- http://stackoverflow.com/questions/327043/how-to-apply-texture-to-glutsolidcube olhem :D
@@ -121,7 +114,8 @@ void compoe_estacao(void){
 /* A general OpenGL initialization function.  Sets all of the initial parameters. */
 void init(void)	        // We call this right after our OpenGL window is created.
 {
-  LoadGLTextures("fachada.bmp");				// Load The Texture(s) 
+  carrega_textura_porta();
+  //LoadGLTextures("fachada.bmp");				// Load The Texture(s) 
   glShadeModel(GL_FLAT);
   glEnable(GL_DEPTH_TEST);
   glEnable(GL_BLEND);
@@ -146,14 +140,7 @@ void display(void)
     gluLookAt(obs[0],obs[1],obs[2],look[0],look[1],look[2],0.0,1.0,0.0); //posicao do objeto no plano
     glBindTexture(GL_TEXTURE_2D, texture[0]);   // choose the texture to use.
                                // done with the polygon.
-  glBegin(GL_QUADS);
-  glTexCoord2fv(ctp[0]);  glVertex3f(-10,10,10); //cima - direita
-  glTexCoord2fv(ctp[1]);  glVertex3f(10,10,10);  //embaixo - direita
-  glTexCoord2fv(ctp[2]);  glVertex3f(10,0,-10);  //cima - esquerda
-  glTexCoord2fv(ctp[3]);  glVertex3f(-10,0,-10); //baixo - esquerda
-  glEnd();
-  glTranslatef(28.0,3.0,25.0);
-
+  compoe_obj_porta();
   glCallList(estacao);
   glCallList(cadeiras);
   glCallList(relogio);

@@ -10,6 +10,9 @@
 #ifndef OBJETOS_H 
 #define OBJETOS_H
 
+#define COORD_TEXTURA_PLANO 1.0
+#define COR_DO_PLANO 0.3,0.52,0.18,1.0
+
 GLfloat ctp[4][2]={
   {-COORD_TEXTURA_PLANO,-COORD_TEXTURA_PLANO},//direita - cima
   {+COORD_TEXTURA_PLANO,-COORD_TEXTURA_PLANO},//esquerda - cima
