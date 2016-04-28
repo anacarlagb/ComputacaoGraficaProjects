@@ -185,8 +185,8 @@ void compoe_estacao(void){
 /* A general OpenGL initialization function.  Sets all of the initial parameters. */
 void init(void)	        // We call this right after our OpenGL window is created.
 {
-  carrega_textura_porta();
-  //LoadGLTextures("fachada.bmp");				// Load The Texture(s) 
+  carrega_textura_porta(0);
+  carrega_textura_porta2(1);
   glShadeModel(GL_FLAT);
   glEnable(GL_DEPTH_TEST);
   glEnable(GL_BLEND);
@@ -204,22 +204,22 @@ void display(void)
   glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
       
   glPushMatrix();
-
     /* calcula a posicao do observador */
     obs[0]=raioxz*cos(2*PI*tetaxz/360);
     obs[2]=raioxz*sin(2*PI*tetaxz/360);
     gluLookAt(obs[0],obs[1],obs[2],look[0],look[1],look[2],0.0,1.0,0.0); //posicao do objeto no plano
-    glBindTexture(GL_TEXTURE_2D, texture[0]);   // choose the texture to use.
-                               // done with the polygon.
-  compoe_obj_porta();
-  createcircle(0,10,0);
-  glCallList(estacao);
-  glCallList(cadeiras);
-  glCallList(relogio);
-  glCallList(planta);
-  glCallList(extintor);
-  glCallList(ar_condicionado);
-  compoe_porta();
+   
+                                 // done with the polygon.
+    compoe_obj_porta();
+    compoe_obj_porta2();
+    createcircle(0,10,0);
+    glCallList(estacao);
+    glCallList(cadeiras);
+    glCallList(relogio);
+    glCallList(planta);
+    glCallList(extintor);
+    glCallList(ar_condicionado);
+    compoe_porta();
   glPopMatrix();
   glutSwapBuffers();
   

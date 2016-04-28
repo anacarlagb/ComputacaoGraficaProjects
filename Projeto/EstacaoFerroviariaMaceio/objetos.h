@@ -33,8 +33,7 @@ CIRCLE circle;
 void createcircle (int k, int r, int h) {
   glBegin(GL_LINES);
       int i;
-      for (i = 0;i < 180; i++)
-      {      
+      for (i = 0;i < 180; i++){      
           glVertex3f(circle.x + k,circle.y - h,0);
           circle.x = r * cos(i + 0.1) - h;
           circle.y = r * sin(i + 0.1) + k;
@@ -44,10 +43,11 @@ void createcircle (int k, int r, int h) {
 };
 
 void compoe_obj_porta(void);
-void carrega_textura_porta(void);
-
+void carrega_textura_porta(int indexImage);
+void carrega_textura_porta2(int indexImage);
 
 void compoe_obj_porta(void){
+ glBindTexture(GL_TEXTURE_2D, texture[0]);   // choose the texture to use. 
   glBegin(GL_QUADS);
     glTexCoord2fv(ctp[0]);  glVertex3f(-10,10,10); //cima - direita
     glTexCoord2fv(ctp[1]);  glVertex3f(10,10,10);  //embaixo - direita
@@ -57,9 +57,26 @@ void compoe_obj_porta(void){
   glTranslatef(28.0,3.0,25.0);
 }
 
+void compoe_obj_porta2(void){
+  glBindTexture(GL_TEXTURE_2D, texture[1]);  
+  glBegin(GL_QUADS);
+    glTexCoord2fv(ctp[0]);  glVertex3f(-20,10,30); //cima - direita
+    glTexCoord2fv(ctp[1]);  glVertex3f(20,10,30);  //embaixo - direita
+    glTexCoord2fv(ctp[2]);  glVertex3f(20,0,-30);  //cima - esquerda
+    glTexCoord2fv(ctp[3]);  glVertex3f(-20,0,-30); //baixo - esquerda
+  glEnd();
+  glTranslatef(28.0,3.0,10.0);
+}
 
-void carrega_textura_porta(void){
-    LoadGLTextures("fachada.bmp");
+void carrega_textura_porta(int indexImage){
+    LoadGLTextures("fachada.bmp", indexImage);
+      // Create Texture   
+
+//    LoadGLTextures("objetos/portaFundoBranco.bmp");
+}
+
+void carrega_textura_porta2(int indexImage){
+    LoadGLTextures("objetos/portaFundoBranco.bmp", indexImage);
 }
 
 

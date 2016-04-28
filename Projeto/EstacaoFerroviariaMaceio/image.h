@@ -19,7 +19,7 @@ int window;
 float xrot, yrot, zrot;
 
 /* storage for one texture  */
-int texture[1];
+int texture[3];
 
 /* Image type - contains height, width, and data */
 struct Image {
@@ -29,6 +29,7 @@ struct Image {
 };
 typedef struct Image Image;
 
+void carrega_imagem(int indexImage);
 // quick and dirty bitmap loader...for 24 bit bitmaps with 1 plane only.  
 // See http://www.dcs.ed.ac.uk/~mxr/gfx/2d/BMP.txt for more info.
 int ImageLoad(char *filename, Image *image) {
@@ -112,7 +113,7 @@ int ImageLoad(char *filename, Image *image) {
 }
     
 // Load Bitmaps And Convert To Textures
-void LoadGLTextures(char *filename) { 
+void LoadGLTextures(char *filename, int indexImage) { 
     // Load Texture
     Image *image1;
     
@@ -127,16 +128,26 @@ void LoadGLTextures(char *filename) {
     exit(1);
     }        
 
-    // Create Texture   
-    glGenTextures(1, &texture[0]);
-    glBindTexture(GL_TEXTURE_2D, texture[0]);   // 2d texture (x and y size)
+    // // Create Texture   
+    // glGenTextures(1, &texture[0]);
+    // glBindTexture(GL_TEXTURE_2D, texture[0]);   // 2d texture (x and y size)
 
-    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR); // scale linearly when image bigger than texture
-    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR); // scale linearly when image smalled than texture
+    // glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR); // scale linearly when image bigger than texture
+    // glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR); // scale linearly when image smalled than texture
+     carrega_imagem(indexImage);
 
     // 2d texture, level of detail 0 (normal), 3 components (red, green, blue), x size from image, y size from image, 
     // border 0 (normal), rgb color data, unsigned byte data, and finally the data itself.
     glTexImage2D(GL_TEXTURE_2D, 0, 3, image1->sizeX, image1->sizeY, 0, GL_RGB, GL_UNSIGNED_BYTE, image1->data);
 };
+
+void carrega_imagem(indexImage){
+     // // Create Texture   
+    glGenTextures(1, &texture[indexImage]);
+    glBindTexture(GL_TEXTURE_2D, texture[indexImage]);   // 2d texture (x and y size)
+
+    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR); // scale linearly when image bigger than texture
+    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR); // scale linearly when image smalled than texture
+}
 
 #endif
