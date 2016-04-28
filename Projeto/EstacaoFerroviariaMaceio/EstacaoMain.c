@@ -114,20 +114,16 @@ void compoe_porta(){
 
 void compoe_relogio(void){
     GLUquadricObj *quadric;
-    
     relogio = glGenLists(1);
     glNewList(relogio, GL_COMPILE);
     glPushMatrix();  
-    
-    //+tras/frente- - +baixo/cima- - - +esquerda/direita-
-    glTranslatef (12.0, 10.0, -6);
-    glRotatef(270,1,0,1);
-    glScalef(4.0,0.1,10.0);
-    quadric = gluNewQuadric();
-    glColor3f(1.0,1.0,1.0);
-
-    
-    gluSphere(quadric,0.3,15,12);
+      //+tras/frente- - +baixo/cima- - - +esquerda/direita-
+      glTranslatef (12.0, 10.0, -6);
+      glRotatef(270,1,0,1);
+      glScalef(4.0,0.1,10.0);
+      quadric = gluNewQuadric();
+      glColor3f(1.0,1.0,1.0);    
+      gluSphere(quadric,0.3,15,12);
     glPopMatrix();
 
 }
@@ -347,7 +343,7 @@ void compoe_estacao(void){
   //compoe_teto();
  // compoe_cadeiras();
 
-  //compoe_relogio();
+  compoe_relogio();
   //compoe_planta();
   //compoe_extintor();
   //compoe_ar_condicionado();

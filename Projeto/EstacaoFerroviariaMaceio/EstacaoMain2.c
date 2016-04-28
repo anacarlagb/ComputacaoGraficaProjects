@@ -50,22 +50,74 @@ GLuint  textura_plano;
 
 GLuint texture_id[MAXTEXTURE];
 
+void drawCircle( GLfloat x, GLfloat y, GLfloat z, GLfloat radius, GLint numberOfSides )
+{
+    int numberOfVertices = numberOfSides + 2;
+    
+    GLfloat twicePi = 2.0f * M_PI;
+    
+    GLfloat circleVerticesX[numberOfVertices];
+    GLfloat circleVerticesY[numberOfVertices];
+    GLfloat circleVerticesZ[numberOfVertices];
+    
+    circleVerticesX[0] = x;
+    circleVerticesY[0] = y;
+    circleVerticesZ[0] = z;
+    int i;
+    
+    for (i = 1; i < numberOfVertices; i++ )
+    {
+        circleVerticesX[i] = x + ( radius * cos( i *  twicePi / numberOfSides ) );
+        circleVerticesY[i] = y + ( radius * sin( i * twicePi / numberOfSides ) );
+        circleVerticesZ[i] = z;
+    }
+    
+    GLfloat allCircleVertices[( numberOfVertices ) * 3];
+    
+    for (i = 0; i < numberOfVertices; i++ )
+    {
+        allCircleVertices[i * 3] = circleVerticesX[i];
+        allCircleVertices[( i * 3 ) + 1] = circleVerticesY[i];
+        allCircleVertices[( i * 3 ) + 2] = circleVerticesZ[i];
+    }
+    
+    glEnableClientState( GL_VERTEX_ARRAY );
+    glVertexPointer( 3, GL_FLOAT, 0, allCircleVertices );
+    glDrawArrays( GL_TRIANGLE_FAN, 0, numberOfVertices);
+    glDisableClientState( GL_VERTEX_ARRAY );
+}
+
+void compoe_relogio(void){
+    GLUquadricObj *quadric;
+    relogio = glGenLists(1);
+    glNewList(relogio, GL_COMPILE);
+    glPushMatrix();  
+      // //+tras/frente- - +baixo/cima- - - +esquerda/direita-
+      glTranslatef (12.0, 10.0, -6);
+      glRotatef(90,0,0,1);
+      glScalef(4.0,0.1,10.0);
+      quadric = gluNewQuadric();
+      glColor3f(1.0,1.0,1.0);
+      gluSphere(quadric,0.5,12,12);
+    glPopMatrix();
+
+}
+
+
 void compoe_piso_sala_entrada(void){
  //piso -- http://stackoverflow.com/questions/327043/how-to-apply-texture-to-glutsolidcube olhem :D
   glEnable(GL_TEXTURE_GEN_S); 
   glPushMatrix();
-
-  //tras/frente - cima/baixo - direita/esquerda
-  glTranslatef (-14.85, -10.0, -6.0);
-  //largura, altura, espessura
-  glScalef (10.05, 0.1, 20);
-  glBindTexture(GL_TEXTURE_2D, texture_id[0]);
-  glutSolidCube (5.0);
-  glPopMatrix();
+    //tras/frente - cima/baixo - direita/esquerda
+    glTranslatef (-14.85, -10.0, -6.0);
+    //largura, altura, espessura
+    glScalef (10.05, 0.1, 20);
+    glBindTexture(GL_TEXTURE_2D, texture_id[0]);
+    glutSolidCube (5.0);
+    glPopMatrix();
   glDisable(GL_TEXTURE_GEN_S); 
   glDisable(GL_TEXTURE_GEN_T);
 }
-
 
 void compoe_porta(){
   glPushMatrix();
@@ -104,7 +156,7 @@ void compoe_estacao(void){
  // compoe_teto();
  // compoe_cadeiras();
 
-  //compoe_relogio();
+  compoe_relogio();
   //compoe_planta();
   //compoe_extintor();
   //compoe_ar_condicionado();
@@ -141,6 +193,7 @@ void display(void)
     glBindTexture(GL_TEXTURE_2D, texture[0]);   // choose the texture to use.
                                // done with the polygon.
   compoe_obj_porta();
+  createcircle(0,10,0);
   glCallList(estacao);
   glCallList(cadeiras);
   glCallList(relogio);

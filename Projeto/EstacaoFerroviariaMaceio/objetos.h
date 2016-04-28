@@ -21,6 +21,28 @@ GLfloat ctp[4][2]={
 };
 
 
+typedef struct
+{
+  float x;
+  float y;
+}CIRCLE;
+
+CIRCLE circle;
+
+//Fonte: http://www.swiftless.com/tutorials/opengl/circle.html
+void createcircle (int k, int r, int h) {
+  glBegin(GL_LINES);
+      int i;
+      for (i = 0;i < 180; i++)
+      {      
+          glVertex3f(circle.x + k,circle.y - h,0);
+          circle.x = r * cos(i + 0.1) - h;
+          circle.y = r * sin(i + 0.1) + k;
+          glVertex3f(circle.x + k,circle.y - h,0);
+      }
+  glEnd();
+};
+
 void compoe_obj_porta(void);
 void carrega_textura_porta(void);
 
