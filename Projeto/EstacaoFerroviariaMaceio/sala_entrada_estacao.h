@@ -91,7 +91,7 @@ void compoe_parede_direita_sala_entrada(void){
 }
 
 void compoe_parede_esquerda_sala_entrada(void){
-    glPushMatrix();
+  glPushMatrix();
   // parede direita- parte 1 - baixo preenchida
   //tras/frente - cima/baixo - direita/esquerda
   glTranslatef (-15, 7.9, -55.7);

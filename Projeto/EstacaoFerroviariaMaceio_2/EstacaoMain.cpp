@@ -475,8 +475,8 @@ void display(void){
   glCallList(planta);
   glCallList(extintor);
   glCallList(ar_condicionado);
+    //compoe_porta();
   glPopMatrix();
-  //compoe_porta();
   glutSwapBuffers();
 }
 
