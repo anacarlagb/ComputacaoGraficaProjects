@@ -93,12 +93,12 @@ void compoe_relogio(void){
     glNewList(relogio, GL_COMPILE);
     glPushMatrix();  
       // //+tras/frente- - +baixo/cima- - - +esquerda/direita-
-      glTranslatef (12.0, 10.0, -6);
-      glRotatef(90,0,0,1);
-      glScalef(4.0,0.1,10.0);
-      quadric = gluNewQuadric();
-      glColor3f(1.0,1.0,1.0);
-      gluSphere(quadric,0.5,12,12);
+      // glTranslatef (10.0, 7.0, -3);
+      // glRotatef(90,0,0,1);
+      // glScalef(4.0,0.1,10.0);
+      // quadric = gluNewQuadric();
+      // glColor3f(1.0,1.0,1.0);
+      // gluSphere(quadric,0.77,12,12);
     glPopMatrix();
 
 }
@@ -131,11 +131,30 @@ void compoe_porta(){
   //espessura, altura, largura
   glScalef (0.1, 4.55, -3.8);
   glutSolidCube (4.0);
+
+  //parte redonda  da porta 
+  GLUquadricObj *quadric;
+  glTranslatef (1, 2.0, 0);
+  glRotatef(90,0,0,1);
+  glScalef(1.0,0.1,2.5);
+  quadric = gluNewQuadric();
+  glColor3f(1.0,1.0,1.0);
+  gluSphere(quadric,0.77,12,12);
   
   glPopMatrix();
   // glPopMatrix();  
 }
 
+/*
+  //metricas relogio
+ glTranslatef (10.0, 1.5, -3);
+  glRotatef(90,0,0,1);
+  glScalef(1.0,0.1,1.0);
+  quadric = gluNewQuadric();
+  glColor3f(1.0,1.0,1.0);
+  gluSphere(quadric,0.77,12,12);
+
+*/
 void compoe_estacao(void){
 
   GLUquadricObj *quadric;
