@@ -50,41 +50,29 @@ GLuint  textura_plano;
 
 GLuint texture_id[MAXTEXTURE];
 
-void drawCircle( GLfloat x, GLfloat y, GLfloat z, GLfloat radius, GLint numberOfSides )
-{
-    int numberOfVertices = numberOfSides + 2;
-    
-    GLfloat twicePi = 2.0f * M_PI;
-    
-    GLfloat circleVerticesX[numberOfVertices];
-    GLfloat circleVerticesY[numberOfVertices];
-    GLfloat circleVerticesZ[numberOfVertices];
-    
-    circleVerticesX[0] = x;
-    circleVerticesY[0] = y;
-    circleVerticesZ[0] = z;
-    int i;
-    
-    for (i = 1; i < numberOfVertices; i++ )
-    {
-        circleVerticesX[i] = x + ( radius * cos( i *  twicePi / numberOfSides ) );
-        circleVerticesY[i] = y + ( radius * sin( i * twicePi / numberOfSides ) );
-        circleVerticesZ[i] = z;
-    }
-    
-    GLfloat allCircleVertices[( numberOfVertices ) * 3];
-    
-    for (i = 0; i < numberOfVertices; i++ )
-    {
-        allCircleVertices[i * 3] = circleVerticesX[i];
-        allCircleVertices[( i * 3 ) + 1] = circleVerticesY[i];
-        allCircleVertices[( i * 3 ) + 2] = circleVerticesZ[i];
-    }
-    
-    glEnableClientState( GL_VERTEX_ARRAY );
-    glVertexPointer( 3, GL_FLOAT, 0, allCircleVertices );
-    glDrawArrays( GL_TRIANGLE_FAN, 0, numberOfVertices);
-    glDisableClientState( GL_VERTEX_ARRAY );
+/* floats for x rotation, y rotation, z rotation */
+float xrot, yrot, zrot;
+
+void compoe_obj_porta(void){
+
+   glPushMatrix();
+    glBindTexture(GL_TEXTURE_2D, texture[0]);   // choose the texture to use.
+    glColor3f(0.5f, 0.35f, 0.05f);
+    //eixo de rotação
+    glTranslatef (-10, -1.6, -1.0);
+    glRotatef ((GLfloat) eixoy, 0, 1.0, 0);
+    glTranslatef (10,  1.6, -1.0);
+    glTranslatef (-10, -1.6, -1.0);
+    //espessura, altura, largura
+    glBegin(GL_QUADS);                    // begin drawing a cube
+    // Front Face (note that the texture's corners have to match the quad's corners)
+      glTexCoord2f(1.0f, 1.0f); glVertex3f(40.0f,  8.0f,  10.0f);  // Top Right Of The Texture and Quad
+      glTexCoord2f(0.0f, 1.0f); glVertex3f(40.0f,  8.0f,  20.0f);  // Top Left Of The Texture and Quad  
+      glTexCoord2f(0.0f, 0.0f); glVertex3f(40.0f, -5.0f,  20.0f);  // Bottom Left Of The Texture and Quad
+      glTexCoord2f(1.0f, 0.0f); glVertex3f(40.0f, -5.0f,  10.0f);  // Bottom Right Of The Texture and Quad
+    glEnd();  
+   glPopMatrix();                                
+
 }
 
 void compoe_relogio(void){
@@ -121,28 +109,25 @@ void compoe_piso_sala_entrada(void){
 
 void compoe_porta(){
   glPushMatrix();
-  glColor3f(0.5f, 0.35f, 0.05f);
-  //eixo de rotação
-  glTranslatef (10, -1.6, -1.0);
-  glRotatef ((GLfloat) eixoy, 0.0, 1.0, 0.0);
-  glTranslatef (-10, 1.6, 1.0);
-
-  glTranslatef (10, -1.6, -3.0);
-  //espessura, altura, largura
-  glScalef (0.1, 4.55, -3.8);
-  glutSolidCube (4.0);
-
-  //parte redonda  da porta 
-  GLUquadricObj *quadric;
-  glTranslatef (1, 2.0, 0);
-  glRotatef(90,0,0,1);
-  glScalef(1.0,0.1,2.5);
-  quadric = gluNewQuadric();
-  glColor3f(1.0,1.0,1.0);
-  gluSphere(quadric,0.77,12,12);
-  
+    glColor3f(0.5f, 0.35f, 0.05f);
+    //eixo de rotação
+    glTranslatef (10, -1.6, -1.0);
+    glRotatef ((GLfloat) eixoy, 0.0, 1.0, 0.0);
+    glTranslatef (-10, 1.6, 1.0);
+    glTranslatef (10, -1.6, -3.0);
+    //espessura, altura, largura
+    glScalef (0.1, 4.55, -3.8);
+    glutSolidCube (4.0);
+    //parte redonda  da porta 
+    GLUquadricObj *quadric;
+    glTranslatef (1, 2.0, 0);
+    glRotatef(90,0,0,1);
+    glScalef(1.0,0.1,2.5);
+    quadric = gluNewQuadric();
+    glColor3f(1.0,1.0,1.0);
+    gluSphere(quadric,0.77,12,12);
   glPopMatrix();
-  // glPopMatrix();  
+ 
 }
 
 /*
@@ -185,8 +170,8 @@ void compoe_estacao(void){
 /* A general OpenGL initialization function.  Sets all of the initial parameters. */
 void init(void)	        // We call this right after our OpenGL window is created.
 {
+  //carrega_textura(0);
   carrega_textura_porta(0);
-  carrega_textura_porta2(1);
   glShadeModel(GL_FLAT);
   glEnable(GL_DEPTH_TEST);
   glEnable(GL_BLEND);
@@ -208,11 +193,12 @@ void display(void)
     obs[0]=raioxz*cos(2*PI*tetaxz/360);
     obs[2]=raioxz*sin(2*PI*tetaxz/360);
     gluLookAt(obs[0],obs[1],obs[2],look[0],look[1],look[2],0.0,1.0,0.0); //posicao do objeto no plano
+
    
-                                 // done with the polygon.
-    compoe_obj_porta();
-    compoe_obj_porta2();
-    createcircle(0,10,0);
+    // done with the polygon.
+    //compoe_obj();
+     compoe_obj_porta();
+    //createcircle(0,10,0);
     glCallList(estacao);
     glCallList(cadeiras);
     glCallList(relogio);

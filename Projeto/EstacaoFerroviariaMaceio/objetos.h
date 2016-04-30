@@ -42,11 +42,18 @@ void createcircle (int k, int r, int h) {
   glEnd();
 };
 
-void compoe_obj_porta(void);
-void carrega_textura_porta(int indexImage);
-void carrega_textura_porta2(int indexImage);
+void compoe_obj(void);
+void compoe_obj_porta(void); 
+void compoe_obj_paredes_laterais(void); 
+void compoe_obj_paredes_superior(void); 
 
-void compoe_obj_porta(void){
+
+void carrega_textura(int indexImage);
+void carrega_textura_porta(int indexImage);
+void carrega_paredes_laterais(int indexImage);
+void carrega_paredes_superior(int indexImage);
+
+void compoe_obj(void){
  glBindTexture(GL_TEXTURE_2D, texture[0]);   // choose the texture to use. 
   glBegin(GL_QUADS);
     glTexCoord2fv(ctp[0]);  glVertex3f(-10,10,10); //cima - direita
@@ -57,27 +64,93 @@ void compoe_obj_porta(void){
   glTranslatef(28.0,3.0,25.0);
 }
 
-void compoe_obj_porta2(void){
-  glBindTexture(GL_TEXTURE_2D, texture[1]);  
+// void compoe_obj_porta(void){
+
+//   glBindTexture(GL_TEXTURE_2D, texture[0]);  
+//   glBegin(GL_QUADS);  // x- frente/traz y -cima/baixo z - esquerda/direita
+//     glTranslatef(28.0,3.0,10.0);       // move 5 units into the screen.
+//     glRotatef((GLfloat) eixoy,1.0f,0.0f,0.0f);   // Rotate On The X Axis
+//     glTexCoord2f(1.0f, 1.0f); glVertex3f(40.0f,  8.0f,  10.0f);  // Top Right Of The Texture and Quad
+//     glTexCoord2f(0.0f, 1.0f); glVertex3f(40.0f,  8.0f,  20.0f);  // Top Left Of The Texture and Quad  
+//     glTexCoord2f(0.0f, 0.0f); glVertex3f(40.0f, -5.0f,  20.0f);  // Bottom Left Of The Texture and Quad
+//     glTexCoord2f(1.0f, 0.0f); glVertex3f(40.0f, -5.0f,  10.0f);  // Bottom Right Of The Texture and Quad
+//   glEnd();
+//   glTranslatef(28.0,3.0,10.0);
+// }
+
+void compoe_obj_paredes_laterais(void){
+   glBindTexture(GL_TEXTURE_2D, texture[2]);   // choose the texture to use. 
   glBegin(GL_QUADS);
-    glTexCoord2fv(ctp[0]);  glVertex3f(-20,10,30); //cima - direita
-    glTexCoord2fv(ctp[1]);  glVertex3f(20,10,30);  //embaixo - direita
-    glTexCoord2fv(ctp[2]);  glVertex3f(20,0,-30);  //cima - esquerda
-    glTexCoord2fv(ctp[3]);  glVertex3f(-20,0,-30); //baixo - esquerda
+    glTexCoord2f(1.0f, 1.0f); glVertex3f(40.0f,  8.0f,  10.0f);  // Top Right Of The Texture and Quad
+    glTexCoord2f(0.0f, 1.0f); glVertex3f(40.0f,  8.0f,  20.0f);  // Top Left Of The Texture and Quad  
+    glTexCoord2f(0.0f, 0.0f); glVertex3f(40.0f, -5.0f,  20.0f);  // Bottom Left Of The Texture and Quad
+    glTexCoord2f(1.0f, 0.0f); glVertex3f(40.0f, -5.0f,  10.0f);  // Bottom Right Of The Texture and Quad
   glEnd();
-  glTranslatef(28.0,3.0,10.0);
+  glTranslatef(28.0,3.0,25.0);
+} 
+void compoe_obj_paredes_superior(void){
+   glBindTexture(GL_TEXTURE_2D, texture[3]);   // choose the texture to use. 
+  glBegin(GL_QUADS);
+    glTexCoord2f(1.0f, 1.0f); glVertex3f(40.0f,  8.0f,  10.0f);  // Top Right Of The Texture and Quad
+    glTexCoord2f(0.0f, 1.0f); glVertex3f(40.0f,  8.0f,  20.0f);  // Top Left Of The Texture and Quad  
+    glTexCoord2f(0.0f, 0.0f); glVertex3f(40.0f, -5.0f,  20.0f);  // Bottom Left Of The Texture and Quad
+    glTexCoord2f(1.0f, 0.0f); glVertex3f(40.0f, -5.0f,  10.0f);  // Bottom Right Of The Texture and Quad
+  glEnd();
+  glTranslatef(28.0,3.0,25.0);
+}
+
+
+void carrega_textura(int indexImage){
+    LoadGLTextures("fachada.bmp", indexImage);
 }
 
 void carrega_textura_porta(int indexImage){
-    LoadGLTextures("fachada.bmp", indexImage);
-      // Create Texture   
-
-//    LoadGLTextures("objetos/portaFundoBranco.bmp");
+    LoadGLTextures("objetos/porta5.bmp", indexImage);
 }
 
-void carrega_textura_porta2(int indexImage){
-    LoadGLTextures("objetos/portaFundoBranco.bmp", indexImage);
+void carrega_paredes_laterais(int indexImage){
+    LoadGLTextures("objetos/fachada_frente_lados.bmp", indexImage);
+}
+void carrega_paredes_superior(int indexImage){
+    LoadGLTextures("objetos/fachada_frente_cima.bmp", indexImage);
 }
 
 
+
+void drawCircle( GLfloat x, GLfloat y, GLfloat z, GLfloat radius, GLint numberOfSides )
+{
+    int numberOfVertices = numberOfSides + 2;
+    
+    GLfloat twicePi = 2.0f * M_PI;
+    
+    GLfloat circleVerticesX[numberOfVertices];
+    GLfloat circleVerticesY[numberOfVertices];
+    GLfloat circleVerticesZ[numberOfVertices];
+    
+    circleVerticesX[0] = x;
+    circleVerticesY[0] = y;
+    circleVerticesZ[0] = z;
+    int i;
+    
+    for (i = 1; i < numberOfVertices; i++ )
+    {
+        circleVerticesX[i] = x + ( radius * cos( i *  twicePi / numberOfSides ) );
+        circleVerticesY[i] = y + ( radius * sin( i * twicePi / numberOfSides ) );
+        circleVerticesZ[i] = z;
+    }
+    
+    GLfloat allCircleVertices[( numberOfVertices ) * 3];
+    
+    for (i = 0; i < numberOfVertices; i++ )
+    {
+        allCircleVertices[i * 3] = circleVerticesX[i];
+        allCircleVertices[( i * 3 ) + 1] = circleVerticesY[i];
+        allCircleVertices[( i * 3 ) + 2] = circleVerticesZ[i];
+    }
+    
+    glEnableClientState( GL_VERTEX_ARRAY );
+    glVertexPointer( 3, GL_FLOAT, 0, allCircleVertices );
+    glDrawArrays( GL_TRIANGLE_FAN, 0, numberOfVertices);
+    glDisableClientState( GL_VERTEX_ARRAY );
+}
 #endif
