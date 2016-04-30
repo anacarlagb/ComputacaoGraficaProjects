@@ -65,7 +65,9 @@ void compoe_obj(void){
 }
 
 void compoe_obj_paredes_laterais(void){
-   glBindTexture(GL_TEXTURE_2D, texture[1]);   // choose the texture to use. 
+  glBindTexture(GL_TEXTURE_2D, texture[1]);   // choose the texture to use. 
+
+  //janela 1 - lado esquerdo
   glBegin(GL_QUADS); // x- frente/traz y -cima/baixo z - esquerda/direita
     glColor3f(1.0, 1.0, 0);
     glTexCoord2f(1.0f, 1.0f); glVertex3f(40.0f,  10.0f,  10.0f);  // Top Right Of The Texture and Quad
@@ -73,7 +75,27 @@ void compoe_obj_paredes_laterais(void){
     glTexCoord2f(0.0f, 0.0f); glVertex3f(40.0f, -5.0f,   20.0f);  // Bottom Left Of The Texture and Quad
     glTexCoord2f(1.0f, 0.0f); glVertex3f(40.0f, -5.0f,   10.0f);  // Bottom Right Of The Texture and Quad
   glEnd();
-  glTranslatef(29.0,3.0,-2.0);
+  glTranslatef(0,0,-11.8); //x- frente/traz y -cima/baixo z - esquerda/direita
+
+  //janela 2 - lado esquerdo
+  glBegin(GL_QUADS); // x- frente/traz y -cima/baixo z - esquerda/direita
+    glColor3f(1.0, 1.0, 0);
+    glTexCoord2f(1.0f, 1.0f); glVertex3f(40.0f,  10.0f,  10.0f);  // Top Right Of The Texture and Quad
+    glTexCoord2f(0.0f, 1.0f); glVertex3f(40.0f,  10.0f,  20.0f);  // Top Left Of The Texture and Quad  
+    glTexCoord2f(0.0f, 0.0f); glVertex3f(40.0f, -5.0f,   20.0f);  // Bottom Left Of The Texture and Quad
+    glTexCoord2f(1.0f, 0.0f); glVertex3f(40.0f, -5.0f,   10.0f);  // Bottom Right Of The Texture and Quad
+  glEnd();
+  glTranslatef(0.5,0,-11.0); //x- frente/traz y -cima/baixo z - esquerda/direita
+  
+  //janela 3 - lado esquerdo
+  glBegin(GL_QUADS); // x- frente/traz y -cima/baixo z - esquerda/direita
+    glColor3f(1.0, 1.0, 0);
+    glTexCoord2f(1.0f, 1.0f); glVertex3f(40.0f,  10.0f,  10.0f);  // Top Right Of The Texture and Quad
+    glTexCoord2f(0.0f, 1.0f); glVertex3f(40.0f,  10.0f,  20.0f);  // Top Left Of The Texture and Quad  
+    glTexCoord2f(0.0f, 0.0f); glVertex3f(40.0f, -5.0f,   20.0f);  // Bottom Left Of The Texture and Quad
+    glTexCoord2f(1.0f, 0.0f); glVertex3f(40.0f, -5.0f,   10.0f);  // Bottom Right Of The Texture and Quad
+  glEnd();
+  glTranslatef(29.0,3.0,-1.0);
 } 
 void compoe_obj_paredes_superior(void){
    glBindTexture(GL_TEXTURE_2D, texture[2]);   // choose the texture to use. 
