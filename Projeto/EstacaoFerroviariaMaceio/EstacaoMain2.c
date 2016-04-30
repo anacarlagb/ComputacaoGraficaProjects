@@ -167,7 +167,8 @@ void compoe_estacao(void){
 void init(void)	        // We call this right after our OpenGL window is created.
 {
   carrega_textura_porta(0);
-  carrega_paredes_laterais(1);
+  carrega_textura_paredes_laterais(1);
+  carrega_textura_paredes_laterais(2);
   glShadeModel(GL_FLAT);
   glEnable(GL_DEPTH_TEST);
   glEnable(GL_BLEND);
@@ -190,7 +191,8 @@ void display(void)
     obs[2]=raioxz*sin(2*PI*tetaxz/360);
     gluLookAt(obs[0],obs[1],obs[2],look[0],look[1],look[2],0.0,1.0,0.0); //posicao do objeto no plano
 
-   compoe_obj_paredes_laterais();
+    compoe_janelas_parede_esquerda_inferior();
+    compoe_janelas_parede_direita_inferior();
     // done with the polygon.
     //createcircle(0,10,0);
     glCallList(estacao);

@@ -44,14 +44,17 @@ void createcircle (int k, int r, int h) {
 
 void compoe_obj(void);
 void compoe_obj_porta(void); 
-void compoe_obj_paredes_laterais(void); 
+void compoe_janelas_parede_esquerda_inferior(void); 
+void compoe_janelas_parede_direita_inferior(void);
 void compoe_obj_paredes_superior(void); 
+
 
 
 void carrega_textura(int indexImage);
 void carrega_textura_porta(int indexImage);
-void carrega_paredes_laterais(int indexImage);
-void carrega_paredes_superior(int indexImage);
+void carrega_textura_paredes_laterais(int indexImage);
+void carrega_textura_paredes_superior(int indexImage);
+
 
 void compoe_obj(void){
  glBindTexture(GL_TEXTURE_2D, texture[0]);   // choose the texture to use. 
@@ -64,39 +67,42 @@ void compoe_obj(void){
   glTranslatef(28.0,3.0,25.0);
 }
 
-void compoe_obj_paredes_laterais(void){
+void compoe_janelas_parede_esquerda_inferior(void){
   glBindTexture(GL_TEXTURE_2D, texture[1]);   // choose the texture to use. 
 
   //janela 1 - lado esquerdo
-  glBegin(GL_QUADS); // x- frente/traz y -cima/baixo z - esquerda/direita
+  glBegin(GL_QUADS); // x- frente/traz y -altura z - largura
     glColor3f(1.0, 1.0, 0);
-    glTexCoord2f(1.0f, 1.0f); glVertex3f(40.0f,  10.0f,  10.0f);  // Top Right Of The Texture and Quad
-    glTexCoord2f(0.0f, 1.0f); glVertex3f(40.0f,  10.0f,  20.0f);  // Top Left Of The Texture and Quad  
-    glTexCoord2f(0.0f, 0.0f); glVertex3f(40.0f, -5.0f,   20.0f);  // Bottom Left Of The Texture and Quad
-    glTexCoord2f(1.0f, 0.0f); glVertex3f(40.0f, -5.0f,   10.0f);  // Bottom Right Of The Texture and Quad
+     glTexCoord2fv(ctp[0]);  glVertex3f(11.0f,  -10.0f,  25.0f);  // Top Right Of The Texture and Quad
+     glTexCoord2fv(ctp[1]);  glVertex3f(11.0f,  -10.0f,    0.0f);  // Top Left Of The Texture and Quad  
+     glTexCoord2fv(ctp[2]);  glVertex3f(11.0f,   28.0f,    0.0f);  // Bottom Left Of The Texture and Quad
+     glTexCoord2fv(ctp[3]);  glVertex3f(11.0f,   28.0f,   25.0f);  // Bottom Right Of The Texture and Quad
   glEnd();
-  glTranslatef(0,0,-11.8); //x- frente/traz y -cima/baixo z - esquerda/direita
+   glTranslatef(0,0,-88.8); //x- frente/traz y -cima/baixo z - esquerda/direita
+}
 
-  //janela 2 - lado esquerdo
-  glBegin(GL_QUADS); // x- frente/traz y -cima/baixo z - esquerda/direita
+void compoe_janelas_parede_direita_inferior(void){
+  glBindTexture(GL_TEXTURE_2D, texture[2]);   // choose the texture to use. 
+
+  glBindTexture(GL_TEXTURE_2D, texture[1]);   // choose the texture to use. 
+
+  //janela 1 - lado esquerdo
+  glTranslatef(0,0,30.8); //x- frente/traz y -cima/baixo z - esquerda/direita
+  glBegin(GL_QUADS); // x- frente/traz y -altura z - largura
     glColor3f(1.0, 1.0, 0);
-    glTexCoord2f(1.0f, 1.0f); glVertex3f(40.0f,  10.0f,  10.0f);  // Top Right Of The Texture and Quad
-    glTexCoord2f(0.0f, 1.0f); glVertex3f(40.0f,  10.0f,  20.0f);  // Top Left Of The Texture and Quad  
-    glTexCoord2f(0.0f, 0.0f); glVertex3f(40.0f, -5.0f,   20.0f);  // Bottom Left Of The Texture and Quad
-    glTexCoord2f(1.0f, 0.0f); glVertex3f(40.0f, -5.0f,   10.0f);  // Bottom Right Of The Texture and Quad
+     glTexCoord2fv(ctp[0]);  glVertex3f(11.0f,  -10.0f,  25.0f);  // Top Right Of The Texture and Quad
+     glTexCoord2fv(ctp[1]);  glVertex3f(11.0f,  -10.0f,    0.0f);  // Top Left Of The Texture and Quad  
+     glTexCoord2fv(ctp[2]);  glVertex3f(11.0f,   28.0f,    0.0f);  // Bottom Left Of The Texture and Quad
+     glTexCoord2fv(ctp[3]);  glVertex3f(11.0f,   28.0f,   25.0f);  // Bottom Right Of The Texture and Quad
   glEnd();
-  glTranslatef(0.5,0,-11.0); //x- frente/traz y -cima/baixo z - esquerda/direita
-  
-  //janela 3 - lado esquerdo
-  glBegin(GL_QUADS); // x- frente/traz y -cima/baixo z - esquerda/direita
-    glColor3f(1.0, 1.0, 0);
-    glTexCoord2f(1.0f, 1.0f); glVertex3f(40.0f,  10.0f,  10.0f);  // Top Right Of The Texture and Quad
-    glTexCoord2f(0.0f, 1.0f); glVertex3f(40.0f,  10.0f,  20.0f);  // Top Left Of The Texture and Quad  
-    glTexCoord2f(0.0f, 0.0f); glVertex3f(40.0f, -5.0f,   20.0f);  // Bottom Left Of The Texture and Quad
-    glTexCoord2f(1.0f, 0.0f); glVertex3f(40.0f, -5.0f,   10.0f);  // Bottom Right Of The Texture and Quad
-  glEnd();
-  glTranslatef(29.0,3.0,-1.0);
+  glTranslatef(0,0,45.8); //x- frente/traz y -cima/baixo z - esquerda/direita
+   glutSwapBuffers();
 } 
+
+
+
+
+
 void compoe_obj_paredes_superior(void){
    glBindTexture(GL_TEXTURE_2D, texture[2]);   // choose the texture to use. 
   glBegin(GL_QUADS);
@@ -117,10 +123,10 @@ void carrega_textura_porta(int indexImage){
     LoadGLTextures("objetos/porta5.bmp", indexImage);
 }
 
-void carrega_paredes_laterais(int indexImage){
+void carrega_textura_paredes_laterais(int indexImage){
     LoadGLTextures("objetos/janela1.bmp", indexImage);
 }
-void carrega_paredes_superior(int indexImage){
+void carrega_textura_paredes_superior(int indexImage){
     LoadGLTextures("objetos/fachada_frente_cima.bmp", indexImage);
 }
 
