@@ -8,15 +8,11 @@
 #include "image.h"
 #include "objetos.h"
 
-
-
-
 /**
   Trabalho de Computacao Grafica - IC/UFAL
   Mapeamento da Estacao Ferroviaria de Maceio - Fase 2
   Equipe: Laysa e Ana Carla
-
-*/
+**/
 #define PI 3.1415
 #define MAXTEXTURE 5
 
@@ -123,8 +119,8 @@ void compoe_porta(){
     glTranslatef (1, 2.0, 0);
     glRotatef(90,0,0,1);
     glScalef(1.0,0.1,2.5);
-    quadric = gluNewQuadric();
-    glColor3f(1.0,1.0,1.0);
+    quadric = gluNewQuadric();  
+    glColor3f(0.5f, 0.35f, 0.05f);
     gluSphere(quadric,0.77,12,12);
   glPopMatrix();
  
@@ -170,8 +166,8 @@ void compoe_estacao(void){
 /* A general OpenGL initialization function.  Sets all of the initial parameters. */
 void init(void)	        // We call this right after our OpenGL window is created.
 {
-  //carrega_textura(0);
   carrega_textura_porta(0);
+  carrega_paredes_laterais(1);
   glShadeModel(GL_FLAT);
   glEnable(GL_DEPTH_TEST);
   glEnable(GL_BLEND);
@@ -194,10 +190,8 @@ void display(void)
     obs[2]=raioxz*sin(2*PI*tetaxz/360);
     gluLookAt(obs[0],obs[1],obs[2],look[0],look[1],look[2],0.0,1.0,0.0); //posicao do objeto no plano
 
-   
+   compoe_obj_paredes_laterais();
     // done with the polygon.
-    //compoe_obj();
-     compoe_obj_porta();
     //createcircle(0,10,0);
     glCallList(estacao);
     glCallList(cadeiras);
