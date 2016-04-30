@@ -166,9 +166,10 @@ void compoe_estacao(void){
 /* A general OpenGL initialization function.  Sets all of the initial parameters. */
 void init(void)	        // We call this right after our OpenGL window is created.
 {
-  carrega_textura_porta(0);
+  //carrega_textura_porta(0);
   carrega_textura_paredes_laterais(1);
   carrega_textura_paredes_laterais(2);
+  carrega_textura_paredes_laterais(3);
   glShadeModel(GL_FLAT);
   glEnable(GL_DEPTH_TEST);
   glEnable(GL_BLEND);
@@ -193,6 +194,7 @@ void display(void)
 
     compoe_janelas_parede_esquerda_inferior();
     compoe_janelas_parede_direita_inferior();
+    compoe_janelas_parede_superior();
     // done with the polygon.
     //createcircle(0,10,0);
     glCallList(estacao);

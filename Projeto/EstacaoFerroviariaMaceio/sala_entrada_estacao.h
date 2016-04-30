@@ -39,9 +39,10 @@ void compoe_parede_entrada_sala_entrada(void){
   //tras/frente - cima/baixo - direita/esquerda
   glTranslatef (10, 7.9, 26.7);
   //espessura, altura, largura
-  glScalef (0.1, 8.7, -7.0);
+  glScalef (0.1, 8.7, -9.0);
   glutSolidCube (5.0);
   glPopMatrix();
+
 
  // parede entrada - parte 2 - baixo preenchida
   glPushMatrix();
