@@ -52,6 +52,7 @@ void carrega_textura(int indexImage);
 void carrega_textura_porta(int indexImage);
 void carrega_textura_paredes_laterais(int indexImage);
 void carrega_textura_paredes_superior(int indexImage);
+void carrega_textura_grama(int indexImage);
 
 
 void compoe_obj(void){
@@ -90,9 +91,7 @@ void compoe_janelas_parede_direita_inferior(void){
      glTexCoord2fv(ctp[3]);  glVertex3f(11.0f,   28.0f,   25.0f);  // Bottom Right Of The Texture and Quad
   glEnd();
   glTranslatef(0,0,45.8); //x- frente/traz y -cima/baixo z - esquerda/direita
-   glutSwapBuffers();
 } 
-
 
 void compoe_janelas_parede_superior(void){
   glPushMatrix();
@@ -105,23 +104,39 @@ void compoe_janelas_parede_superior(void){
     glTexCoord2fv(ctp[3]);  glVertex3f(11.0f,  30.0f, -12.0f);  // Bottom Right Of The Texture and Quad
   glEnd();
  glPopMatrix();
- glutSwapBuffers();
+ 
+}
+void compoe_grama(void){
+    glPushMatrix();
+  glBindTexture(GL_TEXTURE_2D, texture[4]);   // choose the texture to use. 
+  glBegin(GL_QUADS);
+    glColor3f(0.0, 1.0, 0);
+      glTexCoord2fv(ctp[0]);  glVertex3f(-100, -10,100);
+      glTexCoord2fv(ctp[1]);  glVertex3f( 80, -10,100);
+      glTexCoord2fv(ctp[2]);  glVertex3f( 80, -10,-100);
+      glTexCoord2fv(ctp[3]);  glVertex3f(-100, -10,-100);
+  glEnd();
+ glPopMatrix();
+
 }
 
-
 void carrega_textura(int indexImage){
-    LoadGLTextures("fachada.bmp", indexImage);
+  LoadGLTextures("fachada.bmp", indexImage);
 }
 
 void carrega_textura_porta(int indexImage){
-    LoadGLTextures("objetos/porta5.bmp", indexImage);
+  LoadGLTextures("objetos/porta5.bmp", indexImage);
 }
 
 void carrega_textura_paredes_laterais(int indexImage){
-    LoadGLTextures("objetos/janela1.bmp", indexImage);
+  LoadGLTextures("objetos/janela1.bmp", indexImage);
 }
 void carrega_textura_paredes_superior(int indexImage){
-    LoadGLTextures("objetos/fachada_frente_cima.bmp", indexImage);
+  LoadGLTextures("objetos/fachada_frente_cima.bmp", indexImage);
+}
+
+void carrega_textura_grama(int indexImage){
+  LoadGLTextures("objetos/grama.bmp", indexImage);
 }
 
 
