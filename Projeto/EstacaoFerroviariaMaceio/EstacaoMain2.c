@@ -71,18 +71,30 @@ void compoe_obj_porta(void){
 
 }
 
+
 void compoe_relogio(void){
     GLUquadricObj *quadric;
     relogio = glGenLists(1);
     glNewList(relogio, GL_COMPILE);
     glPushMatrix();  
       // //+tras/frente- - +baixo/cima- - - +esquerda/direita-
-      // glTranslatef (10.0, 7.0, -3);
-      // glRotatef(90,0,0,1);
-      // glScalef(4.0,0.1,10.0);
-      // quadric = gluNewQuadric();
-      // glColor3f(1.0,1.0,1.0);
-      // gluSphere(quadric,0.77,12,12);
+      glTranslatef (11.5, 30.85, -2.28);
+      glRotatef(90,0,0,1);
+      glScalef(1.0,0.1,1.0);
+      quadric = gluNewQuadric();  
+      glColor3f(1, 1, 1);
+      gluSphere(quadric,3.95,14,14);
+    glPopMatrix();
+    
+    GLUquadricObj *quadric2;
+    glPushMatrix();  
+      // //+tras/frente- - +baixo/cima- - - +esquerda/direita-
+      glTranslatef (11.3, 30.78, -2.28);
+      glRotatef(90,0,0,1);
+      glScalef(1.0,0.1,1.0);
+      quadric2 = gluNewQuadric();  
+      glColor3f(1, 1, 0);
+      gluSphere(quadric2,5.0,14,14);
     glPopMatrix();
 
 }
@@ -126,16 +138,7 @@ void compoe_porta(){
  
 }
 
-/*
-  //metricas relogio
- glTranslatef (10.0, 1.5, -3);
-  glRotatef(90,0,0,1);
-  glScalef(1.0,0.1,1.0);
-  quadric = gluNewQuadric();
-  glColor3f(1.0,1.0,1.0);
-  gluSphere(quadric,0.77,12,12);
 
-*/
 void compoe_estacao(void){
 
   GLUquadricObj *quadric;
@@ -153,10 +156,10 @@ void compoe_estacao(void){
   compoe_parede_traseira_sala_entrada();
   compoe_parede_direita_sala_entrada();
   compoe_parede_esquerda_sala_entrada();
+
  // compoe_teto();
  // compoe_cadeiras();
-
-  compoe_relogio();
+   compoe_relogio();
   //compoe_planta();
   //compoe_extintor();
   //compoe_ar_condicionado();
@@ -214,6 +217,7 @@ void init(void)	        // We call this right after our OpenGL window is created
   carrega_textura_paredes_laterais(2);
   carrega_textura_paredes_laterais(3);
   carrega_textura_grama(4);
+  carrega_textura_relogio(5);
   glShadeModel(GL_FLAT);
   glEnable(GL_DEPTH_TEST);
   glEnable(GL_BLEND);
@@ -240,8 +244,9 @@ void display(void)
     compoe_janelas_parede_direita_inferior();
     compoe_janelas_parede_superior();
     compoe_grama();
+    compoe_textura_relogio();
 
-    ilumina();
+   // ilumina();
     // done with the polygon.
     //createcircle(0,10,0);
     glCallList(estacao);

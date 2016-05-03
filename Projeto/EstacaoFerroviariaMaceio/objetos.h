@@ -47,12 +47,14 @@ void compoe_obj_porta(void);
 void compoe_janelas_parede_esquerda_inferior(void); 
 void compoe_janelas_parede_direita_inferior(void);
 void compoe_janelas_parede_superior(void); 
+void compoe_textura_relogio(void); 
 
 void carrega_textura(int indexImage);
 void carrega_textura_porta(int indexImage);
 void carrega_textura_paredes_laterais(int indexImage);
 void carrega_textura_paredes_superior(int indexImage);
 void carrega_textura_grama(int indexImage);
+void carrega_textura_relogio(int indexImage);
 
 
 void compoe_obj(void){
@@ -107,7 +109,7 @@ void compoe_janelas_parede_superior(void){
  
 }
 void compoe_grama(void){
-    glPushMatrix();
+  glPushMatrix();
   glBindTexture(GL_TEXTURE_2D, texture[4]);   // choose the texture to use. 
   glBegin(GL_QUADS);
     glColor3f(0.0, 1.0, 0);
@@ -119,6 +121,21 @@ void compoe_grama(void){
  glPopMatrix();
 
 }
+
+void compoe_textura_relogio(void){
+  glPushMatrix();
+  glBindTexture(GL_TEXTURE_2D, texture[5]);   // choose the texture to use. 
+  glBegin(GL_QUADS);
+    glColor3f(1.0, 1.0, 1.0);
+    glTexCoord2f(0.0f, 0.0f); glVertex3f(12.0f,  28.0f,   -5.0f);  // Top Right Of The Texture and Quad
+    glTexCoord2f(1.0f, 0.0f); glVertex3f(12.0f,  28.0f,   0.5f);  // Top Left Of The Texture and Quad  
+    glTexCoord2f(1.0f, 1.0f); glVertex3f(12.0f,  33.5f,   0.5f);  // Bottom Left Of The Texture and Quad
+    glTexCoord2f(0.0f, 1.0f); glVertex3f(12.0f,  33.5f,   -5.0f);  // Bottom Right Of The Texture and Quad
+  glEnd();
+ glPopMatrix();
+
+}
+
 
 void carrega_textura(int indexImage){
   LoadGLTextures("fachada.bmp", indexImage);
@@ -139,7 +156,9 @@ void carrega_textura_grama(int indexImage){
   LoadGLTextures("objetos/grama.bmp", indexImage);
 }
 
-
+void carrega_textura_relogio(int indexImage){
+  LoadGLTextures("objetos/relogio2.bmp", indexImage);
+}
 
 void drawCircle( GLfloat x, GLfloat y, GLfloat z, GLfloat radius, GLint numberOfSides )
 {

@@ -17,9 +17,10 @@ int window;
 
 /* floats for x rotation, y rotation, z rotation */
 float xrot, yrot, zrot;
+#define MAX_TEXTURE 30
 
 /* storage for one texture  */
-int texture[3];
+int texture[MAX_TEXTURE];
 
 /* Image type - contains height, width, and data */
 struct Image {

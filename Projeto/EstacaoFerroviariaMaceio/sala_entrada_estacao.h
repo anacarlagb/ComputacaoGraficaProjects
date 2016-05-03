@@ -66,12 +66,31 @@ void compoe_parede_traseira_sala_entrada(void){
   glutSolidCube (5.0);
   glPopMatrix();
 
-  //parede exterior - parte 1 - baixo preenchida
+  //parede traseira  - parte 1- baixo preenchida
   glPushMatrix();
   //tras/frente - cima/baixo - direita/esquerda
-  glTranslatef (-39.8, 7.9, -6);
+  glTranslatef (-39.8, 7.9, 26.7);
   //espessura, altura, largura
-  glScalef (0.1, 8.7, 20.0);
+  glScalef (0.1, 8.7, -7.0);
+  glutSolidCube (5.0);
+  glPopMatrix();
+
+
+ // parede traseira - parte 2 - baixo preenchida
+  glPushMatrix();
+  //tras/frente - cima/baixo - direita/esquerda
+  glTranslatef (-39.8, 7.9, -37.9);
+  //espessura, altura, largura
+  glScalef (0.1, 8.7, 7.0);
+  glutSolidCube (5.0);
+  glPopMatrix();
+
+   // parede traseira - parte 2 - cima preenchida
+  glPushMatrix();
+  //tras/frente - cima/baixo - direita/esquerda
+  glTranslatef (-39.8, 20.3, -4.0);
+  //espessura, altura, largura
+  glScalef (0.1, 4.0, 7.0);
   glutSolidCube (5.0);
   glPopMatrix();
 
