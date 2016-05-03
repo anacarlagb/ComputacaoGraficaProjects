@@ -14,10 +14,10 @@
 #define COR_DO_PLANO 0.3,0.52,0.18,1.0
 
 GLfloat ctp[4][2]={
-  {-COORD_TEXTURA_PLANO,-COORD_TEXTURA_PLANO},//direita - cima
-  {+COORD_TEXTURA_PLANO,-COORD_TEXTURA_PLANO},//esquerda - cima
-  {+COORD_TEXTURA_PLANO,+COORD_TEXTURA_PLANO},//direita -  baixo
-  {-COORD_TEXTURA_PLANO,+COORD_TEXTURA_PLANO} //direita - baixo
+  {-COORD_TEXTURA_PLANO,-COORD_TEXTURA_PLANO},
+  {+COORD_TEXTURA_PLANO,-COORD_TEXTURA_PLANO},
+  {+COORD_TEXTURA_PLANO,+COORD_TEXTURA_PLANO},
+  {-COORD_TEXTURA_PLANO,+COORD_TEXTURA_PLANO}
 };
 
 
@@ -55,6 +55,7 @@ void carrega_textura_paredes_laterais(int indexImage);
 void carrega_textura_paredes_superior(int indexImage);
 void carrega_textura_grama(int indexImage);
 void carrega_textura_relogio(int indexImage);
+void compoe_catracas(void);
 
 
 void compoe_obj(void){
@@ -95,6 +96,8 @@ void compoe_janelas_parede_direita_inferior(void){
   glTranslatef(0,0,45.8); //x- frente/traz y -cima/baixo z - esquerda/direita
 } 
 
+
+
 void compoe_janelas_parede_superior(void){
   glPushMatrix();
   glBindTexture(GL_TEXTURE_2D, texture[3]);   // choose the texture to use. 
@@ -108,26 +111,57 @@ void compoe_janelas_parede_superior(void){
  glPopMatrix();
  
 }
+
+void compoe_fachada_lanchonete(void){
+   glPushMatrix();
+    glColor3f(1.0, 1.0, 0);
+    glBindTexture(GL_TEXTURE_2D, texture[7]);   // choose the texture to use. 
+    glBegin(GL_QUADS);
+      glColor3f(1.0, 1.0, 0);
+    glTexCoord2f(1.0f, 0.0f); glVertex3f(-38.0f,  12.0f,  10.0f);  // Top Left Of The Texture and Quad 
+    glTexCoord2f(1.0f, 1.0f); glVertex3f(-38.0f,  25.0f,  10.0f);  // Bottom Left Of The Texture and Quad
+    glTexCoord2f(0.0f, 1.0f); glVertex3f(-38.0f,  25.0f,  40.0f);  // Bottom Right Of The Texture and Quad
+    glTexCoord2f(0.0f, 0.0f); glVertex3f(-38.0f,  12.0f,  40.0f);  // Top Right Of The Texture and Quad 
+      
+    glEnd();
+  glPopMatrix();
+}
+
+void compoe_fachada_venda_trem(void){
+   glPushMatrix();
+    glColor3f(1.0, 1.0, 0);
+    glBindTexture(GL_TEXTURE_2D, texture[7]);   // choose the texture to use. 
+    glBegin(GL_QUADS);
+     glColor3f(1.0, 1.0, 1.0);
+     glTexCoord2f(1.0f, 0.0f);  glVertex3f(-31.0f,  12.0f,  10.0f);  // Top Left Of The Texture and Quad 
+     glTexCoord2f(1.0f, 1.0f);  glVertex3f(-31.0f,  20.0f,  10.0f);  // Bottom Left Of The Texture and Quad
+     glTexCoord2f(0.0f, 1.0f); glVertex3f(-31.0f,  20.0f,  45.0f);  // Bottom Right Of The Texture and Quad
+     glTexCoord2f(0.0f, 0.0f);  glVertex3f(-31.0f,  12.0f,  45.0f);  // Top Right Of The Texture and Quad  
+    glEnd();
+  glPopMatrix();
+}
 void compoe_grama(void){
   glPushMatrix();
   glBindTexture(GL_TEXTURE_2D, texture[4]);   // choose the texture to use. 
   glBegin(GL_QUADS);
     glColor3f(0.0, 1.0, 0);
-      glTexCoord2fv(ctp[0]);  glVertex3f(-100, -10,100);
-      glTexCoord2fv(ctp[1]);  glVertex3f( 80, -10,100);
-      glTexCoord2fv(ctp[2]);  glVertex3f( 80, -10,-100);
-      glTexCoord2fv(ctp[3]);  glVertex3f(-100, -10,-100);
+      glTexCoord2fv(ctp[0]);  glVertex3f(-100,-10,  150);
+      glTexCoord2fv(ctp[1]);  glVertex3f( 80, -10,  150);
+      glTexCoord2fv(ctp[2]);  glVertex3f( 80, -10, -150);
+      glTexCoord2fv(ctp[3]);  glVertex3f(-100,-10, -150);
   glEnd();
  glPopMatrix();
 
 }
+
+
 
 void compoe_textura_relogio(void){
   glPushMatrix();
   glBindTexture(GL_TEXTURE_2D, texture[5]);   // choose the texture to use. 
   glBegin(GL_QUADS);
     glColor3f(1.0, 1.0, 1.0);
-    glTexCoord2f(0.0f, 0.0f); glVertex3f(12.0f,  28.0f,   -5.0f);  // Top Right Of The Texture and Quad
+   glTexCoord2f(0.0f, 0.0f); glVertex3f(12.0f,  28.0f,   -5.0f);  // Top Right Of The Texture and Quad
     glTexCoord2f(1.0f, 0.0f); glVertex3f(12.0f,  28.0f,   0.5f);  // Top Left Of The Texture and Quad  
     glTexCoord2f(1.0f, 1.0f); glVertex3f(12.0f,  33.5f,   0.5f);  // Bottom Left Of The Texture and Quad
     glTexCoord2f(0.0f, 1.0f); glVertex3f(12.0f,  33.5f,   -5.0f);  // Bottom Right Of The Texture and Quad
@@ -135,6 +169,110 @@ void compoe_textura_relogio(void){
  glPopMatrix();
 
 }
+
+
+void compoe_mesa(void){
+  glPushMatrix();
+  glBindTexture(GL_TEXTURE_2D, texture[6]);   // choose the texture to use. 
+  glBegin(GL_QUADS);
+    glColor3f(1.0, .0, .0);
+        glTexCoord2f(0.0f, 1.0f);  glVertex3f(-20, -6, 20);
+        glTexCoord2f(0.0f, 0.0f);  glVertex3f( 0, -6,  20);
+        glTexCoord2f(1.0f, 0.0f);  glVertex3f( 0, -6,  10);
+        glTexCoord2f(1.0f, 1.0f);  glVertex3f(-20,-6, 10);
+  glEnd();
+ glPopMatrix();
+
+    GLUquadricObj *quadric;
+    glPushMatrix();
+       //+tras/frente- - +baixo/cima- - - +esquerda/direita-
+      glTranslatef (-10.0, -9.0, 15);
+      //largura, altura, espessura
+      glScalef(3.0,2.0,1.0);
+      quadric = gluNewQuadric();
+      glColor3f(0.5f, 0.35f, 0.05f);  
+      glutSolidCube (3.0);
+    glPopMatrix();
+
+
+  glPushMatrix();
+  glBindTexture(GL_TEXTURE_2D, texture[6]);   // choose the texture to use. 
+  glBegin(GL_QUADS);
+    glColor3f(1.0, .0, .0);
+        glTexCoord2f(0.0f, 1.0f);  glVertex3f(-20, -6, 40);
+        glTexCoord2f(0.0f, 0.0f);  glVertex3f( 0, -6,  40);
+        glTexCoord2f(1.0f, 0.0f);  glVertex3f( 0, -6,  30);
+        glTexCoord2f(1.0f, 1.0f);  glVertex3f(-20,-6, 30);
+  glEnd();
+ glPopMatrix();
+
+    GLUquadricObj *quadric2;
+    glPushMatrix();
+       //+tras/frente- - +baixo/cima- - - +esquerda/direita-
+      glTranslatef (-10.0, -9.0, 35);
+      //largura, altura, espessura
+      glScalef(3.0,2.0,1.0);
+      quadric2 = gluNewQuadric();
+      glColor3f(0.5f, 0.35f, 0.05f);  
+      glutSolidCube (3.0);
+    glPopMatrix();
+
+}
+
+void compoe_catracas(void){
+   GLUquadricObj *quadric;
+
+    GLuint catracas = glGenLists(1);
+    glNewList(catracas, GL_COMPILE);
+
+    /*glTranslatef (-35.0, -10.0, -6.0);
+      //largura, altura, espessura
+      glScalef (10.05, 0.1, 20);*/
+
+    glPushMatrix();  
+     //+tras/frente- - +baixo/cima- - - +esquerda/direita-
+    glTranslatef (-52.0, -12.0, 8);
+    //largura, altura, espessura
+    glScalef(2.0,7.0,1.0);
+    quadric = gluNewQuadric();
+    glColor3f(0,0,0);
+    glutSolidCube (3.0);
+    glPopMatrix();
+
+
+    glPushMatrix();  
+     //+tras/frente- - +baixo/cima- - - +esquerda/direita-
+    glTranslatef (-52.0, -12.0, 0);
+    //largura, altura, espessura
+    glScalef(2.0,7.0,1.0);
+    quadric = gluNewQuadric();
+    glColor3f(0,0,0);
+    glutSolidCube (3.0);
+    glPopMatrix();
+
+    glPushMatrix();  
+     //+tras/frente- - +baixo/cima- - - +esquerda/direita-
+    glTranslatef (-52.0, -12.0, -8);
+    //largura, altura, espessura
+    glScalef(2.0,7.0,1.0);
+    quadric = gluNewQuadric();
+    glColor3f(0,0,0);
+    glutSolidCube (3.0);
+    glPopMatrix();
+
+
+    glPushMatrix();  
+     //+tras/frente- - +baixo/cima- - - +esquerda/direita-
+    glTranslatef (-52.0, -12.0, -16);
+    //largura, altura, espessura
+    glScalef(2.0,7.0,1.0);
+    quadric = gluNewQuadric();
+    glColor3f(0,0,0);
+    glutSolidCube (3.0);
+    glPopMatrix();
+}
+
+
 
 
 void carrega_textura(int indexImage){
@@ -157,8 +295,20 @@ void carrega_textura_grama(int indexImage){
 }
 
 void carrega_textura_relogio(int indexImage){
-  LoadGLTextures("objetos/relogio2.bmp", indexImage);
+  LoadGLTextures("objetos/relogio3.bmp", indexImage);
 }
+
+void carrega_textura_mesa(int indexImage){
+  LoadGLTextures("objetos/toalhaMesa.bmp", indexImage);
+}
+void carrega_fachada_lanchonete(int indexImage){
+  LoadGLTextures("objetos/fachada_lanchonete.bmp", indexImage);
+}
+
+void carrega_fachada_passagem(int indexImage){
+  LoadGLTextures("objetos/fachada_venda_trem.bmp", indexImage);
+}
+
 
 void drawCircle( GLfloat x, GLfloat y, GLfloat z, GLfloat radius, GLint numberOfSides )
 {

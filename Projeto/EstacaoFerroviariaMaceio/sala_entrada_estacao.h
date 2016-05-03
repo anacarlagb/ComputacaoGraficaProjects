@@ -6,11 +6,8 @@
 #ifndef SALA_ENTRADA_ESTACAO_H 
 #define SALA_ENTRADA_ESTACAO_H
 
+void compoe_banheiros(void);
 
-
-int soma(int *x, int *y) {
-   return *x+*y;
-}
 
 void compoe_teto(void){
 	glPushMatrix();
@@ -55,10 +52,12 @@ void compoe_parede_entrada_sala_entrada(void){
   glutSolidCube (5.0);
   glPopMatrix();
 
+
+    
+
 }
 
 void compoe_parede_traseira_sala_entrada(void){
-
   glPushMatrix();
   //tras/frente - cima/baixo - direita/esquerda
   //-14.85, 10.0, -6.0
@@ -99,7 +98,6 @@ void compoe_parede_traseira_sala_entrada(void){
 }
 
 void compoe_parede_direita_sala_entrada(void){
-	
 	glPushMatrix();
   // parede direita- parte 1 - baixo preenchida
   //tras/frente - cima/baixo - direita/esquerda
@@ -123,6 +121,7 @@ void compoe_parede_esquerda_sala_entrada(void){
   glutSolidCube (5.0);
   glPopMatrix();
 }
+
 
 void compoe_biros_direito(void){
   GLUquadricObj *quadric;
@@ -217,6 +216,39 @@ void compoe_biros_esquerdo(void) {
     }
   }
 }
+
+
+
+// void compoe_banheiros(void){
+//   glColor3f(1.0, 1.0, 1.0);
+//   glPushMatrix();
+//      //parede vertical
+//     //tras/frente - cima/baixo - direita/esquerda
+//     glTranslatef (-6.7, 4.9, 15.0);
+//     //largura, altura, espessura
+//     glScalef (7.0, 5.7, 0.3);
+//     glutSolidCube (5.0);
+//   glPopMatrix();
+//    //parede horizontal
+//   glPushMatrix();
+//     //tras/frente - cima/baixo - direita/esquerda
+//     glTranslatef (-33.8, 4.9, 26.7);
+//     //espessura, altura, largura
+//     glScalef (0.1, 5.7, -6.0);
+//     glutSolidCube (5.0);
+//   glPopMatrix();
+ 
+ 
+//   glPushMatrix();
+//     //tras/frente - cima/baixo - direita/esquerda
+//     glTranslatef (-5.8, 4.9, 26.7);
+//     //espessura, altura, largura
+//     glScalef (0.1, 5.7, -3.0);
+//     glutSolidCube (5.0);
+//   glPopMatrix();
+// }
+
+
 
 
 #endif

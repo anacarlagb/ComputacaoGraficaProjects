@@ -8,10 +8,18 @@
 
 
 // sala direita
-void compoe_estacao_sala_direita(void); 
+void compoe_parede_entrada_sala_direita(void);
+void compoe_parede_traseira_sala_direita(void);
+void compoe_parede_direita_sala_direita(void);
 
-void compoe_sala_direita(void){
+void compoe_parede_entrada_sala_direita(void){
 
+}
+void compoe_parede_traseira_sala_direita(void){
+
+}
+void compoe_parede_direita_sala_direita(void){
+	
 }
 
 // objetos da sala direita
