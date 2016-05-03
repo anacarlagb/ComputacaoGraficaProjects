@@ -72,6 +72,294 @@ void compoe_obj_porta(void){
 }
 
 
+ void compoe_cadeiras(void){
+  GLUquadricObj *quadric;
+  
+  cadeiras = glGenLists(1);
+  glNewList(cadeiras, GL_COMPILE);
+  quadric = gluNewQuadric();
+  glColor3f(0,0,0);
+  GLfloat lado, atras = 0;
+  //compoe cadeiras, 4 colunas
+  int i, j;
+  for(i = 3; i<4; i++){
+    atras = i * 17.5;
+    //6 cadeiras lado a lado - 3 da cada lado
+    for(j=0; j<6; j++){
+      lado = j*6.0;
+      if (j>2){
+        lado = lado + 8;
+      }
+
+      //pe cadeira - atrás esquerda
+
+      quadric = gluNewQuadric();
+  
+      gluQuadricDrawStyle(quadric, GLU_FILL);
+      gluQuadricOrientation(quadric, GLU_INSIDE);
+      glPushMatrix();
+      glRotatef(90,1,0,0);
+      //-tras/frente+ - +esquerda/direita- - +baixo/cima-
+      glTranslatef (8-lado, -0.8-atras, 6.8);
+      SOLID_CLOSED_CYLINDER(quadric, 0.1, 0.1, 3.3, 30, 5)
+      gluDeleteQuadric(quadric);
+      glPopMatrix();
+
+
+      //pe cadeira - atrás direita
+      quadric = gluNewQuadric();
+      gluQuadricDrawStyle(quadric, GLU_FILL);
+      gluQuadricOrientation(quadric, GLU_INSIDE);
+      glPushMatrix();
+      glRotatef(90,1,0,0);
+      //-tras/frente+ - +esquerda/direita- - +baixo/cima-
+      glTranslatef (6-lado, -0.8-atras, 6.8);
+      SOLID_CLOSED_CYLINDER(quadric, 0.1, 0.1, 3.3, 30, 5)
+      gluDeleteQuadric(quadric);
+      glPopMatrix();
+
+
+      //pe cadeira - frente esquerda
+      quadric = gluNewQuadric();
+      gluQuadricDrawStyle(quadric, GLU_FILL);
+      gluQuadricOrientation(quadric, GLU_INSIDE);
+      glPushMatrix();
+      glRotatef(90,1,0,0);
+      //-tras/frente+ - +esquerda/direita- - +baixo/cima-
+      glTranslatef (8-lado, 1.2-atras, 6.8);
+      SOLID_CLOSED_CYLINDER(quadric, 0.1, 0.1, 3.3, 30, 5)
+      gluDeleteQuadric(quadric);
+      glPopMatrix();
+
+
+      //pe cadeira - frente direita
+      quadric = gluNewQuadric();
+      gluQuadricDrawStyle(quadric, GLU_FILL);
+      gluQuadricOrientation(quadric, GLU_INSIDE);
+      glPushMatrix();
+      glRotatef(90,1,0,0);
+      //-tras/frente+ - +esquerda/direita- - +baixo/cima-
+      glTranslatef (6-lado, 1.2-atras, 6.8);
+      SOLID_CLOSED_CYLINDER(quadric, 0.1, 0.1, 3.3, 30, 5)
+      gluDeleteQuadric(quadric);
+      glPopMatrix();
+
+      //assento cadeira
+      glPushMatrix();  
+      //+tras/frente- - +baixo/cima- - - +esquerda/direita-
+      glTranslatef (7-lado, -6.8, 0.3-atras);
+      glScalef(4.0,0.3,3.0);
+      quadric=gluNewQuadric();
+      //glColor3f(0.3,0.5,1);
+      gluSphere(quadric,0.5,15,12);
+      glPopMatrix();
+
+      //apoio encosto cadeira - vertical
+      quadric = gluNewQuadric();
+      gluQuadricDrawStyle(quadric, GLU_FILL);
+      gluQuadricOrientation(quadric, GLU_INSIDE);
+      glPushMatrix();   
+      //glColor3f(0,0,0);
+      glRotatef(90,1,0,0);  
+      glTranslatef (7-lado, -1.8-atras, 5);
+      //tras/frente - direita/esquerda - cima/baixo 
+      SOLID_CLOSED_CYLINDER(quadric, 0.15, 0.15, 2.2, 30, 1)
+      //gluDeleteQuadric(quadric);
+      glPopMatrix();
+
+      //encosto cadeira
+      glPushMatrix();  
+      //+tras/frente- - +baixo/cima- - - +esquerda/direita-
+      glTranslatef (7-lado, -4.75, -1.5-atras);
+      glRotatef(-15,1,0,1);
+      glScalef(4,3,0.5);
+      quadric=gluNewQuadric();
+      //glColor3f(0.3,0.5,1);
+      gluSphere(quadric,0.5,15,12);
+      glPopMatrix();
+
+      //apoio encosto cadeira - horizontal
+      quadric = gluNewQuadric();
+      gluQuadricDrawStyle(quadric, GLU_FILL);
+      gluQuadricOrientation(quadric, GLU_INSIDE);
+      glPushMatrix();   
+      //glColor3f(0,0,0);
+      glTranslatef (7-lado, -7, -2-atras);
+      //tras/frente - cima/baixo - direita/esquerda 
+      SOLID_CLOSED_CYLINDER(quadric, 0.15, 0.15, 2.2, 30, 1)
+      gluDeleteQuadric(quadric);
+      glPopMatrix();
+    }
+  }
+}
+
+void compoe_computador_esq(void){
+
+  GLUquadricObj *quadric;
+  // inicia a composicao do computador
+  GLuint comp_esq = glGenLists(1);
+  glNewList(comp_esq, GL_COMPILE);
+  quadric = gluNewQuadric();
+  glColor3f(.0, .0, .0);
+  //gluQuadricTexture(quadric, GL_TRUE);
+  int i, j;
+  GLfloat lado, atras;
+  //compoe computadores do lado da porta, 4 colunas
+  for(i = 3; i<4; i++){
+    atras = i * 17.0;
+    //3 computadores lado a lado
+    for(j=0; j<3; j++){
+      lado = j * 6.0;
+
+      //base tela
+      quadric = gluNewQuadric();
+      gluQuadricDrawStyle(quadric, GLU_FILL);
+      gluQuadricOrientation(quadric, GLU_INSIDE); 
+      glPushMatrix();  
+      //tras/frente - direita/esquerda - cima/baixo 
+      glRotatef(90,1,0,0);
+      glTranslatef (7.0-lado, 6.0-atras, 3.9);    
+      SOLID_CLOSED_CYLINDER(quadric, 1., 1., 0.15, 30, 1)
+      gluDeleteQuadric(quadric);
+      glPopMatrix();
+
+      //apoio tela
+      quadric = gluNewQuadric();
+      gluQuadricDrawStyle(quadric, GLU_FILL);
+      gluQuadricOrientation(quadric, GLU_INSIDE);
+      glPushMatrix();   
+      glRotatef(90,1,0,0);  
+      glTranslatef (7.0-lado, 6.8-atras, 2.0);
+      //tras/frente - direita/esquerda - cima/baixo 
+      SOLID_CLOSED_CYLINDER(quadric, 0.25, 0.25, 2., 30, 1)
+      gluDeleteQuadric(quadric);
+      glPopMatrix();
+
+      //tela
+      glPushMatrix();
+      //tras/frente - cima/baixo - direita/esquerda 
+      glTranslatef (7.0-lado, -1.7, 6.5-atras);
+      glScalef (3., 3., 0.2);
+      glutSolidCube (1.0);
+      glPopMatrix();
+
+      //cpu
+      glPushMatrix();
+      //tras/frente - cima/baixo - direita/esquerda 
+      glTranslatef (9.3-lado, -2.8, 6.0-atras);
+      glScalef (1., 3., 3.);
+      glutSolidCube (1.0);
+      glPopMatrix();
+
+      //teclado
+      glPushMatrix();
+      //tras/frente - cima/baixo - direita/esquerda 
+      glTranslatef (7.3-lado, -4.0, 4.0-atras);
+      glScalef (2.6, 0.2, 1.2);
+      glutSolidCube (1.0);
+      glPopMatrix();
+
+
+
+
+      //mouse
+      quadric = gluNewQuadric();
+      gluQuadricDrawStyle(quadric, GLU_FILL);
+      gluQuadricOrientation(quadric, GLU_INSIDE);
+      glPushMatrix();
+      //tras/frente - cima/baixo - direita/esquerda 
+      glTranslatef (5.0-lado, -4.1, 4.0-atras);
+      gluSphere(quadric, 0.25, 30,15);
+      gluDeleteQuadric(quadric);
+      glPopMatrix();
+    }
+  }
+}
+
+
+void compoe_computador_dir(void){
+
+  GLUquadricObj *quadric;
+  GLuint comp_dir;
+  // inicia a composicao do computador
+  comp_dir = glGenLists(1);
+  glNewList(comp_dir, GL_COMPILE);
+  quadric = gluNewQuadric();
+  glColor3f(.0, .0, .0);
+  //gluQuadricTexture(quadric, GL_TRUE);
+
+  GLfloat lado, atras;
+  //compoe computador do lado da porta, 4 colunas
+  int i,j;
+  for(i = 3; i<4; i++){
+    atras = i * 17.0;
+    //3 computadores lado a lado
+    for(j=0; j<3; j++){
+      lado = j * 6.0;
+
+      //base tela
+      quadric = gluNewQuadric();
+      gluQuadricDrawStyle(quadric, GLU_FILL);
+      gluQuadricOrientation(quadric, GLU_INSIDE); 
+      glPushMatrix();  
+      //tras/frente - direita/esquerda - cima/baixo 
+      glRotatef(90,1,0,0);
+      glTranslatef (-19-lado, 6.0-atras, 3.9);    
+      SOLID_CLOSED_CYLINDER(quadric, 1., 1., 0.15, 30, 1);
+      glPopMatrix();
+
+      //apoio tela
+      quadric = gluNewQuadric();
+      gluQuadricDrawStyle(quadric, GLU_FILL);
+      gluQuadricOrientation(quadric, GLU_INSIDE);
+      glPushMatrix();   
+      glRotatef(90,1,0,0);  
+      glTranslatef (-19-lado, 6.8-atras, 2.0);
+      //tras/frente - direita/esquerda - cima/baixo 
+      SOLID_CLOSED_CYLINDER(quadric, 0.25, 0.25, 2., 30, 1);
+      gluDeleteQuadric(quadric);
+      glPopMatrix();
+
+      //tela
+      glPushMatrix();
+      //tras/frente - cima/baixo - direita/esquerda 
+      glTranslatef (-19-lado, -1.7, 6.5-atras);
+      glScalef (3., 3., 0.2);
+      glutSolidCube (1.0);
+      glPopMatrix();
+
+      //cpu
+      glPushMatrix();
+      //tras/frente - cima/baixo - direita/esquerda 
+      glTranslatef (-21.3-lado, -2.8, 6.0-atras);
+      glScalef (1., 3., 3.);
+      glutSolidCube (1.0);
+      glPopMatrix();
+
+      //teclado
+      glPushMatrix();
+      //tras/frente - cima/baixo - direita/esquerda 
+      glTranslatef (-18.7-lado, -4.0, 4.0-atras);
+      glScalef (2.6, 0.2, 1.2);
+      glutSolidCube (1.0);
+      glPopMatrix();
+       
+
+
+      //mouse
+      quadric = gluNewQuadric();
+      gluQuadricDrawStyle(quadric, GLU_FILL);
+      gluQuadricOrientation(quadric, GLU_INSIDE);
+      glPushMatrix();
+      //tras/frente - cima/baixo - direita/esquerda 
+      glTranslatef (-21-lado, -4.1, 4.0-atras);
+      gluSphere(quadric, 0.25, 30,15);
+      gluDeleteQuadric(quadric);
+      glPopMatrix();
+      
+    }
+  }
+}
 void compoe_relogio(void){
     GLUquadricObj *quadric;
     relogio = glGenLists(1);
@@ -156,10 +444,15 @@ void compoe_estacao(void){
   compoe_parede_traseira_sala_entrada();
   compoe_parede_direita_sala_entrada();
   compoe_parede_esquerda_sala_entrada();
+  compoe_biros_direito();
+  compoe_computador_dir();
+  compoe_biros_esquerdo();
+  compoe_computador_esq();
+  compoe_cadeiras();
+  compoe_relogio();
 
  // compoe_teto();
- // compoe_cadeiras();
-   compoe_relogio();
+
   //compoe_planta();
   //compoe_extintor();
   //compoe_ar_condicionado();

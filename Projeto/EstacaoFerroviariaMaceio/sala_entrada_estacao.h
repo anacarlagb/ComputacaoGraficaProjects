@@ -6,6 +6,8 @@
 #ifndef SALA_ENTRADA_ESTACAO_H 
 #define SALA_ENTRADA_ESTACAO_H
 
+
+
 int soma(int *x, int *y) {
    return *x+*y;
 }
@@ -122,6 +124,99 @@ void compoe_parede_esquerda_sala_entrada(void){
   glPopMatrix();
 }
 
+void compoe_biros_direito(void){
+  GLUquadricObj *quadric;
+  // inicia a composicao do biro
+  GLuint biros_dir;
+  biros_dir = glGenLists(1);
+  glNewList(biros_dir, GL_COMPILE);
+  quadric = gluNewQuadric();
+  glColor3f(1.0, 1.0, 1.0);
+  //gluQuadricTexture(quadric, GL_TRUE);
+
+  GLfloat lado, atras;
+  int i, j;
+  //compoe biros do lado da porta, 4 colunas
+  for(i = 3; i<4; i++){
+    atras = i * 17.0;
+    //3 biros lado a lado
+    for(j=0; j<3; j++){
+      lado = j * 6.0;
+      //biro do computador - frente
+      glPushMatrix();
+      //tras/frente - cima/baixo - direita/esquerda
+      glTranslatef (-19 - lado, -7.0, 7.6 - atras);
+      //largura, altura, espessura
+      glScalef (1.2, 1.2, 0.1);
+      glutSolidCube (5.0);
+      glPopMatrix();
+
+      //biro do computador - divisoria
+      glPushMatrix();
+      //tras/frente - cima/baixo - direita/esquerda
+      glTranslatef (-16.3 - lado, -5.5, 5.4 - atras);
+      //espessura, altura, largura
+      glScalef (0.1, 1.8, 1.0);
+      glutSolidCube (5.0);
+      glPopMatrix();
+
+      //biro do computador - base
+      glPushMatrix();
+      //tras/frente - cima/baixo - direita/esquerda
+      glTranslatef (-19 - lado, -4.3, 5.4 - atras);
+      //altura, espessura, largura
+      glScalef (1.2, 0.1, 1.0);
+      glutSolidCube (5.0);
+      glPopMatrix();
+    }
+  }
+}
+void compoe_biros_esquerdo(void) {
+ 
+ GLUquadricObj *quadric;
+  glColor3f(1.0, 1.0, 1.0);
+// inicia a composicao do biro
+  GLuint biros_esq = glGenLists(1);
+  glNewList(biros_esq, GL_COMPILE);
+  quadric = gluNewQuadric();
+  //gluQuadricTexture(quadric, GL_TRUE);
+  GLfloat lado, atras;
+  //compoe biros do lado da porta, 4 colunas
+  int i,j;
+  for(i = 3; i<4; i++){
+    atras = i * 17.0;
+    //3 biros lado a lado
+    for(j=0; j<3; j++){
+      lado = j * 6.0;
+      //biro do computador - frente
+      glPushMatrix();
+      //tras/frente - cima/baixo - direita/esquerda
+      glTranslatef (7.0 - lado, -7.0, 7.6 - atras);
+      //largura, altura, espessura
+      glScalef (1.2, 1.2, 0.1);
+      glutSolidCube (5.0);
+      glPopMatrix();
+
+      //biro do computador - divisoria
+      glPushMatrix();
+      //tras/frente - cima/baixo - direita/esquerda
+      glTranslatef (4.3 - lado, -5.5, 5.4 - atras);
+      //espessura, altura, largura
+      glScalef (0.1, 1.8, 1.0);
+      glutSolidCube (5.0);
+      glPopMatrix();
+
+      //biro do computador - base
+      glPushMatrix();
+      //tras/frente - cima/baixo - direita/esquerda
+      glTranslatef (7.0 - lado, -4.3, 5.4 - atras);
+      //altura, espessura, largura
+      glScalef (1.2, 0.1, 1.0);
+      glutSolidCube (5.0);
+      glPopMatrix();
+    }
+  }
+}
 
 
 #endif
