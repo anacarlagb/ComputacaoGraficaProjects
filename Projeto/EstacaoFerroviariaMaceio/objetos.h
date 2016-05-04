@@ -31,13 +31,14 @@ CIRCLE circle;
 
 //Fonte: http://www.swiftless.com/tutorials/opengl/circle.html
 void createcircle (int k, int r, int h) {
+  glColor3f(0.5f, 0.35f, 0.05f);
   glBegin(GL_LINES);
       int i;
       for (i = 0;i < 180; i++){      
-          glVertex3f(circle.x + k,circle.y - h,0);
+          glVertex3f(circle.x + k,circle.y - h, 52);
           circle.x = r * cos(i + 0.1) - h;
           circle.y = r * sin(i + 0.1) + k;
-          glVertex3f(circle.x + k,circle.y - h,0);
+          glVertex3f(circle.x + k,circle.y - h, 52);
       }
   glEnd();
 };

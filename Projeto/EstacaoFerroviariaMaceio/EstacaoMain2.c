@@ -686,7 +686,7 @@ void display(void)
  
      ilumina();
     // done with the polygon.
-    //createcircle(0,10,0);
+    createcircle(0,10, 0);
     glCallList(estacao);
     glCallList(cadeiras);
     glCallList(relogio);
