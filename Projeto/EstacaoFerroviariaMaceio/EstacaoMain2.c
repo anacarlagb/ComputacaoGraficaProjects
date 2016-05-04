@@ -49,6 +49,18 @@ GLuint texture_id[MAXTEXTURE];
 /* floats for x rotation, y rotation, z rotation */
 float xrot, yrot, zrot;
 
+GLfloat marrom_difusa[]    = { 0.95,0.5,0.2, 1.0 };
+GLfloat marrom_especular[] = { 1.0, 1.0, 1.0, 1.0 };
+GLfloat marrom_brilho[]    = { 128.0 };
+
+GLfloat cinzaesc_difusa[]    = { 0.5, 0.5, 0.5, 1.0 };
+GLfloat cinzaesc_especular[] = { 1.0, 1.0, 1.0, 1.0 };
+GLfloat cinzaesc_brilho[]    = { 128.0 };
+
+GLfloat cinzamed_difusa[]    = { 0.7, 0.7, 0.7, 1.0 };
+GLfloat cinzamed_especular[] = { 1.0, 1.0, 1.0, 1.0 };
+GLfloat cinzamed_brilho[]    = { 120.0 };
+
 void compoe_obj_porta(void){
 
    glPushMatrix();
@@ -672,7 +684,7 @@ void display(void)
     compoe_telhado();
 
  
-   // ilumina();
+     ilumina();
     // done with the polygon.
     //createcircle(0,10,0);
     glCallList(estacao);
@@ -682,6 +694,15 @@ void display(void)
     glCallList(extintor);
     glCallList(ar_condicionado);
     compoe_porta();
+
+  glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, marrom_difusa);
+  glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, marrom_especular);
+  glMaterialfv(GL_FRONT_AND_BACK, GL_SHININESS, marrom_brilho); 
+
+  glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, cinzaesc_difusa);
+  glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, cinzaesc_especular);
+  glMaterialfv(GL_FRONT_AND_BACK, GL_SHININESS, cinzaesc_brilho); 
+
   glPopMatrix();
   glutSwapBuffers();
   
