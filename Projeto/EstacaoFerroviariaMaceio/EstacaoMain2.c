@@ -633,6 +633,8 @@ void init(void)	        // We call this right after our OpenGL window is created
   carrega_textura_relogio(5);
   carrega_textura_mesa(6);
   carrega_fachada_lanchonete(7);
+  carrega_fachada_passagem(8);
+  carrega_fachada_frontal(9);
 
   glShadeModel(GL_FLAT);
   glEnable(GL_DEPTH_TEST);
@@ -663,6 +665,9 @@ void display(void)
     compoe_mesa();
     compoe_textura_relogio();
     compoe_fachada_lanchonete();
+    compoe_fachada_venda_trem();
+    compoe_fachada_frontal();
+
  
    // ilumina();
     // done with the polygon.

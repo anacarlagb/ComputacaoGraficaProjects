@@ -71,9 +71,14 @@ void compoe_obj_porta(void){
 
 }
 
-void compoe_cadeira(){
-
+void compoe_cadeira(int lado, int atras){
       GLUquadricObj *quadric;
+
+      cadeiras = glGenLists(1);
+      glNewList(cadeiras, GL_COMPILE);
+      quadric = gluNewQuadric();
+      glColor3f(0, 0, 1); 
+
       quadric = gluNewQuadric();
   
       gluQuadricDrawStyle(quadric, GLU_FILL);
@@ -81,7 +86,7 @@ void compoe_cadeira(){
       glPushMatrix();
       glRotatef(90,1,0,0);
       //-tras/frente+ - +esquerda/direita- - +baixo/cima-
-      glTranslatef (8, 12.8, 6.8);
+      glTranslatef (8-lado, -0.8-atras, 6.8);
       SOLID_CLOSED_CYLINDER(quadric, 0.1, 0.1, 3.3, 30, 5)
       gluDeleteQuadric(quadric);
       glPopMatrix();
@@ -94,7 +99,7 @@ void compoe_cadeira(){
       glPushMatrix();
       glRotatef(90,1,0,0);
       //-tras/frente+ - +esquerda/direita- - +baixo/cima-
-      glTranslatef (6, 12.8, 6.8);
+      glTranslatef (6-lado, -0.8-atras, 6.8);
       SOLID_CLOSED_CYLINDER(quadric, 0.1, 0.1, 3.3, 30, 5)
       gluDeleteQuadric(quadric);
       glPopMatrix();
@@ -107,7 +112,7 @@ void compoe_cadeira(){
       glPushMatrix();
       glRotatef(90,1,0,0);
       //-tras/frente+ - +esquerda/direita- - +baixo/cima-
-      glTranslatef (8, 1.2, 6.8);
+      glTranslatef (8-lado, 1.2-atras, 6.8);
       SOLID_CLOSED_CYLINDER(quadric, 0.1, 0.1, 3.3, 30, 5)
       gluDeleteQuadric(quadric);
       glPopMatrix();
@@ -120,7 +125,7 @@ void compoe_cadeira(){
       glPushMatrix();
       glRotatef(90,1,0,0);
       //-tras/frente+ - +esquerda/direita- - +baixo/cima-
-      glTranslatef (6, 1.2, 6.8);
+      glTranslatef (6-lado, 1.2-atras, 6.8);
       SOLID_CLOSED_CYLINDER(quadric, 0.1, 0.1, 3.3, 30, 5)
       gluDeleteQuadric(quadric);
       glPopMatrix();
@@ -128,7 +133,7 @@ void compoe_cadeira(){
       //assento cadeira
       glPushMatrix();  
       //+tras/frente- - +baixo/cima- - - +esquerda/direita-
-      glTranslatef (7, -6.8, 0.3);
+      glTranslatef (7-lado, -6.8, 0.3-atras);
       glScalef(4.0,0.3,3.0);
       quadric=gluNewQuadric();
       //glColor3f(0.3,0.5,1);
@@ -142,7 +147,7 @@ void compoe_cadeira(){
       glPushMatrix();   
       //glColor3f(0,0,0);
       glRotatef(90,1,0,0);  
-      glTranslatef (7, -1.8, 5);
+      glTranslatef (7-lado, -1.8-atras, 5);
       //tras/frente - direita/esquerda - cima/baixo 
       SOLID_CLOSED_CYLINDER(quadric, 0.15, 0.15, 2.2, 30, 1)
       //gluDeleteQuadric(quadric);
@@ -151,7 +156,7 @@ void compoe_cadeira(){
       //encosto cadeira
       glPushMatrix();  
       //+tras/frente- - +baixo/cima- - - +esquerda/direita-
-      glTranslatef (7, -4.75, -1.5);
+      glTranslatef (7-lado, -4.75, -1.5-atras);
       glRotatef(-15,1,0,1);
       glScalef(4,3,0.5);
       quadric=gluNewQuadric();
@@ -165,7 +170,7 @@ void compoe_cadeira(){
       gluQuadricOrientation(quadric, GLU_INSIDE);
       glPushMatrix();   
       //glColor3f(0,0,0);
-      glTranslatef (7, -7, -2);
+      glTranslatef (7-lado, -7, -2-atras);
       //tras/frente - cima/baixo - direita/esquerda 
       SOLID_CLOSED_CYLINDER(quadric, 0.15, 0.15, 2.2, 30, 1)
       gluDeleteQuadric(quadric);
@@ -475,7 +480,7 @@ void compoe_relogio(void){
       glScalef(1.0,0.1,1.0);
       quadric = gluNewQuadric();  
       glColor3f(1, 1, 1);
-      gluSphere(quadric,3.95,14,14);
+      gluSphere(quadric,4.0,14,14);
     glPopMatrix();
     
     GLUquadricObj *quadric2;
@@ -564,7 +569,13 @@ void compoe_estacao(void){
   compoe_cadeiras();
   compoe_relogio();
   compoe_catracas();
-  compoe_cadeira();
+  compoe_cadeira(12, -8);
+  compoe_cadeira(17, -8);
+  compoe_cadeira(21, -8);
+
+  compoe_cadeira(12, -27);
+  compoe_cadeira(17, -27);
+  compoe_cadeira(21, -27);
   glEndList();
 }
 // Inicializa parâmetros de rendering
@@ -620,6 +631,9 @@ void init(void)	        // We call this right after our OpenGL window is created
   carrega_textura_paredes_laterais(3);
   carrega_textura_grama(4);
   carrega_textura_relogio(5);
+  carrega_textura_mesa(6);
+  carrega_fachada_lanchonete(7);
+  carrega_fachada_passagem(8);
 
   glShadeModel(GL_FLAT);
   glEnable(GL_DEPTH_TEST);
@@ -647,8 +661,11 @@ void display(void)
     compoe_janelas_parede_direita_inferior();
     compoe_janelas_parede_superior();
     compoe_grama();
+    compoe_mesa();
     compoe_textura_relogio();
-
+    compoe_fachada_lanchonete();
+    compoe_fachada_venda_trem();
+ 
    // ilumina();
     // done with the polygon.
     //createcircle(0,10,0);
