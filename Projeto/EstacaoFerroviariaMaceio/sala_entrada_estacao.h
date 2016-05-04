@@ -10,15 +10,37 @@ void compoe_banheiros(void);
 
 
 void compoe_teto(void){
-	glPushMatrix();
-  //teto
-  //tras/frente - cima/baixo - direita/esquerda
-  glTranslatef (-14.85, 10.0, -6.0);
-  glColor3f(0.92,0.85,0);
-  //largura, altura, espessura
-  glScalef (10.05, 1, 10);
-  glutSolidCube (5.0);
+	 // teto - parte esquerda 
+  glPushMatrix();
+    glColor3f(0.5f, 0.35f, 0.05f);
+    //tras/frente - cima/baixo - direita/esquerda
+    glTranslatef (-14.85, 17.0, 26.7);
+    //espessura, altura, largura
+    glScalef (10.05, 0.1, 7.0);
+    glutSolidCube (5.0);
   glPopMatrix();
+
+     // teto - parte direita
+  glPushMatrix();
+      glColor3f(0.5f, 0.35f, 0.05f);
+      //tras/frente - cima/baixo - direita/esquerda
+      glTranslatef (-14.85, 17.0, -38.0);
+      //espessura, altura, largura
+      glScalef (10.05, 0.1, 7.0);
+      glutSolidCube (5.0);
+  glPopMatrix();
+
+     // teto - parte meio
+    glPushMatrix();
+      glColor3f(0.5f, 0.35f, 0.05f);
+      //tras/frente - cima/baixo - direita/esquerda
+      glTranslatef (-14.85, 30.0, -4.0);
+      //espessura, altura, largura
+      glScalef (10.05, 0.1, 7.0);
+      glutSolidCube (5.0);
+  glPopMatrix();
+
+
 }
 
 void compoe_parede_entrada_sala_entrada(void){

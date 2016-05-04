@@ -569,6 +569,7 @@ void compoe_estacao(void){
   compoe_cadeiras();
   compoe_relogio();
   compoe_catracas();
+  compoe_teto();
   compoe_cadeira(12, -8);
   compoe_cadeira(17, -8);
   compoe_cadeira(21, -8);
@@ -635,6 +636,7 @@ void init(void)	        // We call this right after our OpenGL window is created
   carrega_fachada_lanchonete(7);
   carrega_fachada_passagem(8);
   carrega_fachada_frontal(9);
+  carrega_textura_telhado(10);
 
   glShadeModel(GL_FLAT);
   glEnable(GL_DEPTH_TEST);
@@ -667,6 +669,7 @@ void display(void)
     compoe_fachada_lanchonete();
     compoe_fachada_venda_trem();
     compoe_fachada_frontal();
+    compoe_telhado();
 
  
    // ilumina();

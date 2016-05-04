@@ -231,7 +231,6 @@ void compoe_fachada_frontal(void){
     glEnd();
   glPopMatrix();
 
-
   glPushMatrix();
     glBindTexture(GL_TEXTURE_2D, texture[9]);   // choose the texture to use. 
      glBegin(GL_QUADS);
@@ -296,6 +295,78 @@ void compoe_fachada_frontal(void){
        glTexCoord2f(1.0f, 1.0f); glVertex3f(11.1f,    14.0f,  12.0f);  // Bottom Left Of The Texture and Quad
        glTexCoord2f(0.0f, 1.0f); glVertex3f(11.1f,    14.0f,  49.0f);  // Bottom Right Of The Texture and Quad
        glTexCoord2f(0.0f, 0.0f); glVertex3f(11.1f,    18.0f,  49.0f);  // Top Right Of The Texture and Quad  
+    glEnd();
+  glPopMatrix();
+}
+
+void compoe_telhado(void){
+    // telhado  - meio  - frente
+  glPushMatrix();
+    glBindTexture(GL_TEXTURE_2D, texture[10]);   // choose the texture to use. 
+     glBegin(GL_QUADS);
+       glColor3f(0.5f, 0.35f, 0.05f);
+       glTexCoord2f(1.0f, 0.0f); glVertex3f(-7.1f,     48.0f,    13.0f);  // Top Left Of The Texture and Quad 
+       glTexCoord2f(1.0f, 1.0f); glVertex3f(11.1f,     30.0f,    13.0f);  // Bottom Left Of The Texture and Quad
+       glTexCoord2f(0.0f, 1.0f); glVertex3f(11.1f,     30.0f,  -22.0f);  // Bottom Right Of The Texture and Quad
+       glTexCoord2f(0.0f, 0.0f); glVertex3f(-7.1f,     48.0f,  -22.0f);  // Top Right Of The Texture and Quad  
+    glEnd();
+  glPopMatrix();
+    // telhado  - meio  - atras
+    glPushMatrix();
+    glBindTexture(GL_TEXTURE_2D, texture[10]);   // choose the texture to use. 
+     glBegin(GL_QUADS);
+       glColor3f(0.5f, 0.35f, 0.05f);
+       glTexCoord2f(1.0f, 0.0f); glVertex3f(-40.1f,     30.0f,    13.0f);  // Top Left Of The Texture and Quad 
+       glTexCoord2f(1.0f, 1.0f); glVertex3f(-7.1f,     48.0f,    13.0f);  // Bottom Left Of The Texture and Quad
+       glTexCoord2f(0.0f, 1.0f); glVertex3f(-7.1f,     48.0f,   -22.0f);  // Bottom Right Of The Texture and Quad
+       glTexCoord2f(0.0f, 0.0f); glVertex3f(-40.1f,     30.0f,  -22.0f);  // Top Right Of The Texture and Quad  
+    glEnd();
+  glPopMatrix();
+
+
+  // telhado esquerdo - frente 
+  glPushMatrix();
+    glBindTexture(GL_TEXTURE_2D, texture[10]);   // choose the texture to use. 
+     glBegin(GL_QUADS);
+       glColor3f(0.5f, 0.35f, 0.05f);
+       glTexCoord2f(1.0f, 0.0f); glVertex3f(-7.1f,     35.0f,    49.0f);  // Top Left Of The Texture and Quad 
+       glTexCoord2f(1.0f, 1.0f); glVertex3f(11.1f,     17.0f,    49.0f);  // Bottom Left Of The Texture and Quad
+       glTexCoord2f(0.0f, 1.0f); glVertex3f(11.1f,     17.0f,  13.0f);  // Bottom Right Of The Texture and Quad
+       glTexCoord2f(0.0f, 0.0f); glVertex3f(-7.1f,     35.0f,  13.0f);  // Top Right Of The Texture and Quad  
+    glEnd();
+  glPopMatrix();
+       // telhado esquerdo - atras 
+  glPushMatrix();
+    glBindTexture(GL_TEXTURE_2D, texture[10]);   // choose the texture to use. 
+     glBegin(GL_QUADS);
+       glColor3f(0.5f, 0.35f, 0.05f);
+       glTexCoord2f(1.0f, 0.0f); glVertex3f(-40.1f, 17.0f, 49.0f);  // Top Left Of The Texture and Quad 
+       glTexCoord2f(1.0f, 1.0f); glVertex3f(-7.1f , 35.0f, 49.0f);  // Bottom Left Of The Texture and Quad
+       glTexCoord2f(0.0f, 1.0f); glVertex3f(-7.1f , 35.0f, 13.0f);  // Bottom Right Of The Texture and Quad
+       glTexCoord2f(0.0f, 0.0f); glVertex3f(-40.1f, 17.0f, 13.0f);  // Top Right Of The Texture and Quad  
+    glEnd();
+  glPopMatrix();
+
+      // telhado direito  - frente
+  glPushMatrix();
+    glBindTexture(GL_TEXTURE_2D, texture[10]);   // choose the texture to use. 
+     glBegin(GL_QUADS);
+       glColor3f(0.5f, 0.35f, 0.05f);
+       glTexCoord2f(1.0f, 0.0f); glVertex3f(-7.1f,     35.0f,    -22.0f);  // Top Left Of The Texture and Quad 
+       glTexCoord2f(1.0f, 1.0f); glVertex3f(11.1f,     17.0f,    -22.0f);  // Bottom Left Of The Texture and Quad
+       glTexCoord2f(0.0f, 1.0f); glVertex3f(11.1f,     17.0f,    -55.0f);  // Bottom Right Of The Texture and Quad
+       glTexCoord2f(0.0f, 0.0f); glVertex3f(-7.1f,     35.0f,   -55.0f);  // Top Right Of The Texture and Quad  
+    glEnd();
+  glPopMatrix();
+     // telhado direito  - atras
+  glPushMatrix();
+    glBindTexture(GL_TEXTURE_2D, texture[10]);   // choose the texture to use. 
+     glBegin(GL_QUADS);
+       glColor3f(0.5f, 0.35f, 0.05f);
+       glTexCoord2f(1.0f, 0.0f); glVertex3f(-40.1f,  17.0f,    -22.0f);  // Top Left Of The Texture and Quad 
+       glTexCoord2f(1.0f, 1.0f); glVertex3f(-7.1f,   35.0f,    -22.0f);  // Bottom Left Of The Texture and Quad
+       glTexCoord2f(0.0f, 1.0f); glVertex3f(-7.1f,   35.0f,    -55.0f);  // Bottom Right Of The Texture and Quad
+       glTexCoord2f(0.0f, 0.0f); glVertex3f(-40.1f,  17.0f,   -55.0f);  // Top Right Of The Texture and Quad  
     glEnd();
   glPopMatrix();
 }
@@ -402,6 +473,9 @@ void carrega_fachada_passagem(int indexImage){
 
 void carrega_fachada_frontal(int indexImage){
   LoadGLTextures("objetos/cor-creme.bmp", indexImage);
+}
+void carrega_textura_telhado(int indexImage){
+  LoadGLTextures("objetos/telhado.bmp", indexImage);
 }
 
 
