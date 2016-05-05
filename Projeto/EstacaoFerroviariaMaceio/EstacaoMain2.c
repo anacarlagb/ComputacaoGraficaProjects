@@ -589,6 +589,7 @@ void compoe_estacao(void){
   compoe_cadeira(12, -27);
   compoe_cadeira(17, -27);
   compoe_cadeira(21, -27);
+
   glEndList();
 }
 // Inicializa parâmetros de rendering
@@ -650,6 +651,8 @@ void init(void)	        // We call this right after our OpenGL window is created
   carrega_fachada_frontal(9);
   carrega_textura_telhado(10);
   carrega_textura_controle_catraca(11);
+  carrega_textura_trilho_trem(12);
+  carrega_textura_trem(13);
 
   glShadeModel(GL_FLAT);
   glEnable(GL_DEPTH_TEST);
@@ -684,8 +687,8 @@ void display(void)
     compoe_fachada_frontal();
     compoe_telhado();
     compoe_textura_catraca();
-
- 
+    compoe_textura_trilho_trem();
+    compoe_trem();
     ilumina();
     // done with the polygon.
     createcircle(-34,10, -25);

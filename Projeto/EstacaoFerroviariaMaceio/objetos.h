@@ -462,25 +462,59 @@ void compoe_catracas(void){
     glColor3f(0,0,0);
     glutSolidCube (3.0);
   glPopMatrix();
+}
+
+void compoe_textura_trilho_trem(void){
+  glPushMatrix();
+    glBindTexture(GL_TEXTURE_2D, texture[12]);   // choose the texture to use. 
+    glColor3f(0.5f, 0.35f, 0.05f);
+    glBegin(GL_QUADS);
+       glTexCoord2f(0.0f, 1.0f);  glVertex3f(-98, -9,  6);
+       glTexCoord2f(0.0f, 0.0f);  glVertex3f(-62, -9,  6);
+       glTexCoord2f(1.0f, 0.0f);  glVertex3f(-62, -9, -10);
+       glTexCoord2f(1.0f, 1.0f);  glVertex3f(-98, -9, -10);
+    glEnd();
+   glPopMatrix();
 
 
 }
 
-// void compoe_trem(void){
-//    GLUquadricObj *quadric;
+void compoe_trem(void){
+    glBindTexture(GL_TEXTURE_2D, texture[13]);   // choose the texture to use. 
 
-//   quadric = gluNewQuadric();
-//   gluQuadricTexture(quadric, GL_TRUE);
-//   gluCylinder(quadric, 0.5, 0.5, 4, 12, 3);
+  glPushMatrix();
+      glColor3f(1, 0, 0);
+     // /* nariz */
+      GLUquadricObj *quadratic;
+      quadratic = gluNewQuadric();
+      glTranslatef(-65,0,-2);
+      glRotatef(90.0f, 0.0f, 1.0f, 0.0f);
+      gluCylinder(quadratic,5,0.3f,5.0f,32,32);  
+  glPopMatrix(); 
+
+  glPushMatrix(); 
+        /* corpo */
+      glColor3f(1, 1, 1);
+      GLUquadricObj *quadric;
+      glTranslatef(-73,0,-2);
+      glRotatef(90.0f, 0.0f, 1.0f, 0.0f);
+      quadric = gluNewQuadric();
+      gluQuadricTexture(quadric, GL_TRUE);
+      gluCylinder(quadric, 5, 5, 8, 32, 32);     
+  glPopMatrix();
+
+  glPushMatrix(); 
+        /* corpo */
+      glColor3f(1, 1, 1);
+      GLUquadricObj *quadric3;
+      glTranslatef(-97,0,-2);
+      glRotatef(90.0f, 0.0f, 1.0f, 0.0f);
+      quadric3 = gluNewQuadric();
+      gluQuadricTexture(quadric, GL_TRUE);
+      gluCylinder(quadric, 10, 5, 28, 32, 32);     
+  glPopMatrix();
   
-//    nariz 
-//   quadric = gluNewQuadric();
-//   gluQuadricTexture(quadric, GL_TRUE);
-//   glPushMatrix();
-//   glTranslatef(0,0,4);
-//   gluCylinder(quadric, 0.5, 0.0, 1.5, 12, 3);
-//   glPopMatrix();
-// }
+}
 
 
 
@@ -527,6 +561,14 @@ void carrega_textura_telhado(int indexImage){
 
 void carrega_textura_controle_catraca(int indexImage){
   LoadGLTextures("objetos/controle.bmp", indexImage);
+}
+
+void carrega_textura_trilho_trem(int indexImage){
+   LoadGLTextures("objetos/trilho_trem2.bmp", indexImage);
+}
+
+void carrega_textura_trem(int indexImage){
+   LoadGLTextures("objetos/textura_trem2.bmp", indexImage);
 }
 
 
