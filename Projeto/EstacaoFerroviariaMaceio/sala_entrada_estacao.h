@@ -130,11 +130,20 @@ void compoe_parede_direita_sala_entrada(void){
   glutSolidCube (5.0);
   glPopMatrix();
 
+   glPushMatrix();
+  // parede direita- parte superior
+  //tras/frente - cima/baixo - direita/esquerda
+  glTranslatef (-10.5, -10.0, 13.0);
+  //largura, altura, espessura
+  glScalef (7.7, 8.7, 0.1);
+  glutSolidCube (5.0);
+  glPopMatrix();
+
 }
 
 void compoe_parede_esquerda_sala_entrada(void){
   glPushMatrix();
-  // parede direita- parte 1 - baixo preenchida
+  // parede esquerda- parte 1 - baixo preenchida
   //tras/frente - cima/baixo - direita/esquerda
   glTranslatef (-15, -4.9, -55.7);
   //largura, altura, espessura
@@ -144,11 +153,20 @@ void compoe_parede_esquerda_sala_entrada(void){
   glPopMatrix();
 
   glPushMatrix();
-  // parede direita- parte superior
+  // parede esquerda - parte superior
   //tras/frente - cima/baixo - direita/esquerda
   glTranslatef (-14.7, 20.5, -21.7);
   //largura, altura, espessura
   glScalef (10.0, 3.9, 0.1);
+  glutSolidCube (5.0);
+  glPopMatrix();
+
+  glPushMatrix();
+  // parede esquerda - parte superior
+  //tras/frente - cima/baixo - direita/esquerda
+  glTranslatef (-14.7, -10, -21.7);
+  //largura, altura, espessura
+  glScalef (5.0, 3.9, 0.1);
   glutSolidCube (5.0);
   glPopMatrix();
 }

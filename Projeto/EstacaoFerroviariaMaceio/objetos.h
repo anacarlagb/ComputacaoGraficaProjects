@@ -35,10 +35,10 @@ void createcircle (int k, int r, int h) {
   glBegin(GL_LINES);
       int i;
       for (i = 0;i < 180; i++){      
-          glVertex3f(circle.x + k,circle.y - h, 52);
+          glVertex3f(circle.x + k,circle.y - h, 13.6);
           circle.x = r * cos(i + 0.1) - h;
           circle.y = r * sin(i + 0.1) + k;
-          glVertex3f(circle.x + k,circle.y - h, 52);
+          glVertex3f(circle.x + k,circle.y - h, 13.6);
       }
   glEnd();
 };
@@ -148,17 +148,17 @@ void compoe_mesa(void){
   glBindTexture(GL_TEXTURE_2D, texture[6]);   // choose the texture to use. 
   glBegin(GL_QUADS);
     glColor3f(1.0, .0, .0);
-        glTexCoord2f(0.0f, 1.0f);  glVertex3f(-20, -6, 20);
-        glTexCoord2f(0.0f, 0.0f);  glVertex3f( 0, -6,  20);
-        glTexCoord2f(1.0f, 0.0f);  glVertex3f( 0, -6,  10);
-        glTexCoord2f(1.0f, 1.0f);  glVertex3f(-20,-6, 10);
+        glTexCoord2f(0.0f, 1.0f);  glVertex3f(-20, -6,  24);
+        glTexCoord2f(0.0f, 0.0f);  glVertex3f( 0,  -6,  24);
+        glTexCoord2f(1.0f, 0.0f);  glVertex3f( 0,  -6,  16);
+        glTexCoord2f(1.0f, 1.0f);  glVertex3f(-20, -6,  16);
   glEnd();
  glPopMatrix();
 
     GLUquadricObj *quadric;
     glPushMatrix();
        //+tras/frente- - +baixo/cima- - - +esquerda/direita-
-      glTranslatef (-10.0, -9.0, 15);
+      glTranslatef (-10.0, -9.0, 20);
       //largura, altura, espessura
       glScalef(3.0,2.0,1.0);
       quadric = gluNewQuadric();
@@ -372,23 +372,67 @@ void compoe_telhado(void){
   glPopMatrix();
 }
 
+void compoe_textura_catraca(void){
+  glPushMatrix();
+    glBindTexture(GL_TEXTURE_2D, texture[11]);   // choose the texture to use. 
+     glBegin(GL_QUADS);
+       glColor3f(1.0, 1.0, 1.0);
+       glTexCoord2f(1.0f, 0.0f); glVertex3f(-49,   -2.0f,    8.0f);  // Top Left Of The Texture and Quad 
+       glTexCoord2f(1.0f, 1.0f); glVertex3f(-49,   -4.0f,    8.0f);  // Bottom Left Of The Texture and Quad
+       glTexCoord2f(0.0f, 1.0f); glVertex3f(-49,   -4.0f,    10.0f);  // Bottom Right Of The Texture and Quad
+       glTexCoord2f(0.0f, 0.0f); glVertex3f(-49,   -2.0f,    10.0f);  // Top Right Of The Texture and Quad  
+    glEnd();
+  glPopMatrix();
+
+  glPushMatrix();
+    glBindTexture(GL_TEXTURE_2D, texture[11]);   // choose the texture to use. 
+     glBegin(GL_QUADS);
+       glColor3f(1.0, 1.0, 1.0);
+       glTexCoord2f(1.0f, 0.0f); glVertex3f(-49,   -2.0f,    0.0f);  // Top Left Of The Texture and Quad 
+       glTexCoord2f(1.0f, 1.0f); glVertex3f(-49,   -4.0f,    0.0f);  // Bottom Left Of The Texture and Quad
+       glTexCoord2f(0.0f, 1.0f); glVertex3f(-49,   -4.0f,    2.0f);  // Bottom Right Of The Texture and Quad
+       glTexCoord2f(0.0f, 0.0f); glVertex3f(-49,   -2.0f,    2.0f);  // Top Right Of The Texture and Quad  
+    glEnd();
+  glPopMatrix();
+
+  glPushMatrix();
+    glBindTexture(GL_TEXTURE_2D, texture[11]);   // choose the texture to use. 
+     glBegin(GL_QUADS);
+       glColor3f(1.0, 1.0, 1.0);
+       glTexCoord2f(1.0f, 0.0f); glVertex3f(-49,   -2.0f,    -8.0f);  // Top Left Of The Texture and Quad 
+       glTexCoord2f(1.0f, 1.0f); glVertex3f(-49,   -4.0f,    -8.0f);  // Bottom Left Of The Texture and Quad
+       glTexCoord2f(0.0f, 1.0f); glVertex3f(-49,   -4.0f,    -10.0f);  // Bottom Right Of The Texture and Quad
+       glTexCoord2f(0.0f, 0.0f); glVertex3f(-49,   -2.0f,    -10.0f);  // Top Right Of The Texture and Quad  
+    glEnd();
+  glPopMatrix();
+
+    glPushMatrix();
+    glBindTexture(GL_TEXTURE_2D, texture[11]);   // choose the texture to use. 
+     glBegin(GL_QUADS);
+       glColor3f(1.0, 1.0, 1.0);
+       glTexCoord2f(1.0f, 0.0f); glVertex3f(-49,   -2.0f,    -16.0f);  // Top Left Of The Texture and Quad 
+       glTexCoord2f(1.0f, 1.0f); glVertex3f(-49,   -4.0f,    -16.0f);  // Bottom Left Of The Texture and Quad
+       glTexCoord2f(0.0f, 1.0f); glVertex3f(-49,   -4.0f,    -18.0f);  // Bottom Right Of The Texture and Quad
+       glTexCoord2f(0.0f, 0.0f); glVertex3f(-49,   -2.0f,    -18.0f);  // Top Right Of The Texture and Quad  
+    glEnd();
+  glPopMatrix();
+}
 void compoe_catracas(void){
    GLUquadricObj *quadric;
-
     GLuint catracas = glGenLists(1);
     glNewList(catracas, GL_COMPILE);
-
     glPushMatrix();  
-     //+tras/frente- - +baixo/cima- - - +esquerda/direita-
-    glTranslatef (-52.0, -12.0, 8);
-    //largura, altura, espessura
-    glScalef(2.0,7.0,1.0);
-    quadric = gluNewQuadric();
-    glColor3f(0,0,0);
-    glutSolidCube (3.0);
+       //+tras/frente- - +baixo/cima- - - +esquerda/direita-
+      glTranslatef (-52.0, -12.0, 8);
+      //largura, altura, espessura
+      glScalef(2.0,7.0,1.0);
+      quadric = gluNewQuadric();
+      glColor3f(0,0,0);
+      glutSolidCube (3.0);
     glPopMatrix();
 
-    glPushMatrix();  
+
+  glPushMatrix();  
      //+tras/frente- - +baixo/cima- - - +esquerda/direita-
     glTranslatef (-52.0, -12.0, 0);
     //largura, altura, espessura
@@ -396,9 +440,9 @@ void compoe_catracas(void){
     quadric = gluNewQuadric();
     glColor3f(0,0,0);
     glutSolidCube (3.0);
-    glPopMatrix();
+  glPopMatrix();
 
-    glPushMatrix();  
+  glPushMatrix();  
      //+tras/frente- - +baixo/cima- - - +esquerda/direita-
     glTranslatef (-52.0, -12.0, -8);
     //largura, altura, espessura
@@ -406,10 +450,10 @@ void compoe_catracas(void){
     quadric = gluNewQuadric();
     glColor3f(0,0,0);
     glutSolidCube (3.0);
-    glPopMatrix();
+  glPopMatrix();
 
 
-    glPushMatrix();  
+  glPushMatrix();  
      //+tras/frente- - +baixo/cima- - - +esquerda/direita-
     glTranslatef (-52.0, -12.0, -16);
     //largura, altura, espessura
@@ -417,7 +461,9 @@ void compoe_catracas(void){
     quadric = gluNewQuadric();
     glColor3f(0,0,0);
     glutSolidCube (3.0);
-    glPopMatrix();
+  glPopMatrix();
+
+
 }
 
 // void compoe_trem(void){
@@ -477,6 +523,10 @@ void carrega_fachada_frontal(int indexImage){
 }
 void carrega_textura_telhado(int indexImage){
   LoadGLTextures("objetos/telhado.bmp", indexImage);
+}
+
+void carrega_textura_controle_catraca(int indexImage){
+  LoadGLTextures("objetos/controle.bmp", indexImage);
 }
 
 
