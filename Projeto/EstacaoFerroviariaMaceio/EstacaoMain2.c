@@ -622,7 +622,7 @@ void ilumina(void)
   glLightfv(GL_LIGHT0, GL_AMBIENT, luzAmbiente); 
   glLightfv(GL_LIGHT0, GL_DIFFUSE, luzDifusa );
   glLightfv(GL_LIGHT0, GL_SPECULAR, luzEspecular );
-  glLightfv(GL_LIGHT0, GL_POSITION, posicaoLuz );
+  glLightfv(GL_LIGHT0, GL_POSITION, posicaoLuz);
 
   // Habilita a definição da cor do material a partir da cor corrente
   glEnable(GL_COLOR_MATERIAL);
@@ -689,6 +689,7 @@ void display(void)
     compoe_textura_catraca();
     compoe_textura_trilho_trem();
     compoe_trem();
+
     ilumina();
     // done with the polygon.
     createcircle(-34,10, -25);

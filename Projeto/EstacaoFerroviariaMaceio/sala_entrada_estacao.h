@@ -130,14 +130,7 @@ void compoe_parede_direita_sala_entrada(void){
   glutSolidCube (5.0);
   glPopMatrix();
 
-   glPushMatrix();
-  // parede direita- parte superior
-  //tras/frente - cima/baixo - direita/esquerda
-  glTranslatef (-10.5, -10.0, 13.0);
-  //largura, altura, espessura
-  glScalef (7.7, 8.7, 0.1);
-  glutSolidCube (5.0);
-  glPopMatrix();
+
 
 }
 
@@ -267,35 +260,6 @@ void compoe_biros_esquerdo(void) {
 }
 
 
-
-// void compoe_banheiros(void){
-//   glColor3f(1.0, 1.0, 1.0);
-//   glPushMatrix();
-//      //parede vertical
-//     //tras/frente - cima/baixo - direita/esquerda
-//     glTranslatef (-6.7, 4.9, 15.0);
-//     //largura, altura, espessura
-//     glScalef (7.0, 5.7, 0.3);
-//     glutSolidCube (5.0);
-//   glPopMatrix();
-//    //parede horizontal
-//   glPushMatrix();
-//     //tras/frente - cima/baixo - direita/esquerda
-//     glTranslatef (-33.8, 4.9, 26.7);
-//     //espessura, altura, largura
-//     glScalef (0.1, 5.7, -6.0);
-//     glutSolidCube (5.0);
-//   glPopMatrix();
- 
- 
-//   glPushMatrix();
-//     //tras/frente - cima/baixo - direita/esquerda
-//     glTranslatef (-5.8, 4.9, 26.7);
-//     //espessura, altura, largura
-//     glScalef (0.1, 5.7, -3.0);
-//     glutSolidCube (5.0);
-//   glPopMatrix();
-// }
 
 
 
